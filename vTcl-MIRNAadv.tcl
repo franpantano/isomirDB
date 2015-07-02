@@ -283,7 +283,18 @@ global gVar
 set gVar(msg) "Searching process started..."
 
 
-set lfn [glob -directory $gVar(resultPATH) *.mirna]
+set lfn {}
+set lf [glob -directory $gVar(resultPATH) *]
+foreach n $lf {
+ set fn [lindex [split $n "/"] end]
+ 
+ set ext [lindex [split $fn "."] end]
+ 
+ if {$ext == "mirna"} {
+  lappend lfn $n
+ }
+
+}
 
 if {[llength $lfn] == 0} {
  set gVar(msg) "ERROR: No Result files found in the folder..."
@@ -469,7 +480,7 @@ proc vTclWindow.top23 {base {container 0}} {
         -background white -borderwidth 1 -textvariable gVar(resultPATH) 
     button $base.fra24.but27 \
         -borderwidth 1 \
-        -command {set gVar(resultPATH) [tk_chooseDirectory -parent .top23 -title "Select Results Folder" -mustexist 1]} \
+        -command {set gVar(resultPATH) [tk_chooseDirectory -parent .top23 -title "Select Results Folder" -mustexist 1 -initialdir $gVar(resultPATH)]} \
         -pady 0 -text Browse 
     frame $base.fra28 \
         -borderwidth 1 -relief groove -height 75 -width 125 
