@@ -1,0 +1,285 @@
+ 
+ # drawtable.tcl --
+ #     Script to draw a table in a canvas
+ #
+ namespace eval ::DrawTable {
+     variable tableCmd
+     variable table
+     variable defaults
+
+     # Possibly need to take care of Windows/Linux/UNIX differences
+     # in font sizes
+     #
+     set defaults {
+         -columnwidths         {20 20}
+         -headerfont           "Helvetica 14 bold"
+         -headerforeground     black
+         -headerbackground     white
+         -textfont             "Helvetica 12"
+         -textforeground       black
+         -textbackground       white
+         -numberfont           fixed
+         -numberforeground     black
+         -numberbackground     white
+         -evenrowbackground    white
+         -oddrowbackground     white
+         -oddcolumnbackground  white
+         -evencolumnbackground white
+         -corner               {10 10}
+         -tablewidth           {}
+     }
+
+     set tableCmd(headers)       Headers
+     set tableCmd(addrow)        Addrow
+     set tableCmd(colconfigure)  ColumnConfigure
+     set tableCmd(rowconfigure)  RowConfigure
+     set tableCmd(cellconfigure) CellConfigure
+     set tableCmd(cellcontent)   CellContent
+     set tableCmd(frame)         DrawFrame
+     set tableCmd(hline)         DrawHLine
+
+     namespace export drawntable
+ }
+
+ # drawntable --
+ #     Create a command to draw and manipulate a table
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     args        Options for the table (key-value pairs)
+ #
+ proc ::DrawTable::drawntable {canvas args} {
+
+     InitialiseTable $canvas $args
+
+     return [interp alias {} table$canvas {} ::DrawTable::TableCmd $canvas]
+ }
+
+ # TableCmd --
+ #     Call the procedure for the given subcommand
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     subcmd      Subcommand to run
+ #     options     Options to the subcommand
+ #
+ proc ::DrawTable::TableCmd {canvas subcmd {options {}}} {
+     variable tableCmd
+
+     if { [info exists tableCmd($subcmd)] } {
+         $tableCmd($subcmd) $canvas $options
+     } else {
+         return -code error "DrawnTable: unknown subcommand - $subcmd"
+     }
+ }
+
+ # InitialiseTable --
+ #     Initialise the array "table" for a new drawn table
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     options     Options for the table
+ #
+ proc ::DrawTable::InitialiseTable {canvas options} {
+     variable defaults
+     variable table
+
+     foreach {keyw value} $defaults {
+         set table($canvas,$keyw) $value
+     }
+
+     foreach {keyw value} $options {
+        set table($canvas,$keyw) $value
+     }
+
+     if { $table($canvas,-tablewidth) == {} } {
+        set table($canvas,-tablewidth) [$canvas cget -width]
+     }
+     set tablewidth $table($canvas,-tablewidth)
+
+     set columns $table($canvas,-columnwidths)
+     set xpos    [lindex $table($canvas,-corner) 0]
+     set ypos    [lindex $table($canvas,-corner) 1]
+
+     set item [$canvas create text 0 0 -text "MWijk" -font $table($canvas,-textfont)]
+     set bbox [$canvas bbox $item]
+     set charwidth [expr {([lindex $bbox 2]-[lindex $bbox 0])/5.0}]
+     set rowheight [expr {[lindex $bbox 3]-[lindex $bbox 1]}]
+     $canvas delete $item
+
+     set item [$canvas create text 0 0 -text "MWijk" -font $table($canvas,-headerfont)]
+     set bbox [$canvas bbox $item]
+     set headerheight [expr {[lindex $bbox 3]-[lindex $bbox 1]}]
+     $canvas delete $item
+
+     set pos       $xpos
+     set colpos    [list $pos]
+     set headerpos [list]
+     foreach col $columns {
+         set hpos [expr {$pos + 0.5*$col*$charwidth}]
+         set pos  [expr {$pos + $col*$charwidth}]
+         lappend colpos $pos
+         lappend headerpos $hpos
+     }
+
+     set table($canvas,colpos)       $colpos
+     set table($canvas,headerpos)    $headerpos
+     set table($canvas,charwidth)    $charwidth
+     set table($canvas,rowheight)    $rowheight
+     set table($canvas,headerheight) $headerheight
+     set table($canvas,header)       0
+     set table($canvas,yheader)      [expr {$ypos+0.5*$headerheight}]
+     set table($canvas,ypos)         [expr {$ypos+$headerheight+0.5*$rowheight}]
+     set table($canvas,rowidx)       0
+
+     return [interp alias {} table$canvas {} TableCmd $canvas]
+ }
+
+ # Headers --
+ #     Draw the headers to the table
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     headers     Headers for the table
+ #
+ proc ::DrawTable::Headers {canvas headers} {
+     variable table
+
+     if { $table($canvas,header) == 0 } {
+         set table($canvas,header) 1
+         set yheader $table($canvas,yheader)
+
+         set idx 0
+         foreach col $table($canvas,headerpos) text $headers {
+             if { $col == {} } {
+                 break
+             }
+             $canvas create text $col $yheader -text $text \
+                 -anchor center \
+                 -font $table($canvas,-headerfont)       \
+                 -fill $table($canvas,-headerforeground) \
+                 -tags [list header_$idx]
+             incr idx
+         }
+     } else {
+         set idx 0
+         foreach col $table($canvas,headerpos) text $headers {
+             if { $col == {} } {
+                 break
+             }
+             set item [$canvas gettags "header_$idx"]
+             $canvas itemconfigure -text $text
+             incr idx
+         }
+     }
+ }
+
+ # Addrow --
+ #     Add a new row to the table
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     values      values for the columns in the table
+ #
+ proc ::DrawTable::Addrow {canvas values} {
+     variable table
+
+     set ypos $table($canvas,ypos)
+
+     set rowidx $table($canvas,rowidx)
+     set colidx 0
+     set rowtype [expr {$rowidx%2==0? "even" : "odd"}]
+
+     foreach txtcol [lrange $table($canvas,colpos) 0 end-1] \
+             numcol [lrange $table($canvas,colpos) 1 end]   \
+             text $values {
+         set coltype [expr {$colidx%2==0? "even" : "odd"}]
+         if { $txtcol == {} } {
+             break
+         }
+         if { ! [string is double $text] } {
+             $canvas create text $txtcol $ypos -text " $text" \
+                 -anchor w \
+                 -font $table($canvas,-textfont)       \
+                 -fill $table($canvas,-textforeground) \
+                 -tags [list cell_${rowidx}_$colidx row$rowtype col$coltype]
+             incr colidx
+         } else {
+             $canvas create text $numcol $ypos -text "$text " \
+                 -anchor e \
+                 -font $table($canvas,-numberfont)       \
+                 -fill $table($canvas,-numberforeground) \
+                 -tags [list cell_${rowidx}_$colidx row$rowtype col$coltype]
+             incr colidx
+         }
+     }
+
+     incr table($canvas,rowidx)
+     set table($canvas,ypos) [expr {$table($canvas,ypos)+$table($canvas,rowheight)}]
+ }
+
+ # DrawHLine --
+ #     Draw a horizontal line
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     dummy       Dummy argument
+ #
+ proc ::DrawTable::DrawHLine {canvas dummy} {
+     variable table
+
+     set ypos [expr {$table($canvas,ypos)-0.5*$table($canvas,rowheight)}]
+
+     set xbgn [lindex $table($canvas,colpos) 0]
+     set xend [lindex $table($canvas,colpos) end]
+
+     $canvas create line $xbgn $ypos $xend $ypos -fill black
+ }
+
+ # DrawFrame --
+ #     Draw a frame around the table
+ #
+ # Arguments:
+ #     canvas      Canvas to be used
+ #     which       Which columns to delimit with a vertical line
+ #                 (either "first" or "all")
+ #
+ proc ::DrawTable::DrawFrame {canvas which} {
+     variable table
+
+     set ybgn [expr {$table($canvas,yheader)-0.5*$table($canvas,headerheight)}]
+     set yend [expr {$table($canvas,ypos)   -0.5*$table($canvas,rowheight)}]
+
+     set xbgn [lindex $table($canvas,colpos) 0]
+     set xend [lindex $table($canvas,colpos) end]
+
+     $canvas create line $xbgn $ybgn $xend $ybgn $xend $yend $xbgn $yend \
+         $xbgn $ybgn -fill black
+
+     if { $which == "first" } {
+         set xcol [lindex $table($canvas,colpos) 1]
+         $canvas create line $xcol $ybgn $xcol $yend -fill black
+     } else {
+         foreach xcol [lrange $table($canvas,colpos) 1 end-1] {
+             $canvas create line $xcol $ybgn $xcol $yend -fill black
+         }
+     }
+ }
+
+# # main --
+# #     Test the code
+# #
+# pack [canvas .c -width 600 -bg white]
+#
+# set table [::DrawTable::drawntable .c -headerforeground green -columnwidths {20 20 10 10} \
+#                                       -numberforeground blue]
+#
+# $table headers {Name Country Size #}
+# $table hline
+# $table addrow  {London Britain "Very big" 1}
+# $table addrow  {Paris France "Very big" 2}
+# $table addrow  {Amsterdam Holland "Big" 3}
+# $table addrow  {Brussels Belgium "Very big" 4}
+# $table addrow  {Schokland Holland "Tiny" 5}
+# #$table frame first
+# $table frame all
