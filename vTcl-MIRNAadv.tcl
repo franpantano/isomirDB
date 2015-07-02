@@ -311,7 +311,7 @@ if {$fn == {}} {
 
 
 $gVar(wgetCNV) delete all
-set table [::DrawTable::drawntable $gVar(wgetCNV) -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Helvetica 12 bold" -textfont "Helvetica 10"]
+set table [::DrawTable::drawntable $gVar(wgetCNV) -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 #seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
 #AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
 $table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
