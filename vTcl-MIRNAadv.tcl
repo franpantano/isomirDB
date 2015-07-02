@@ -369,7 +369,7 @@ global gVar
 global vTcl
 
 ## This will clean up and call exit properly on Windows.
-vTcl:WindowsCleanup
+wm protocol .top23 WM_DELETE_WINDOW { exit }
 
 ## This will execute only in RUN mode
 if {[catch "set vTcl(version)"] == 1} {

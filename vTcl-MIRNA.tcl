@@ -52,14 +52,6 @@ proc Window {args} {
         destroy { if $exists {destroy $newname; return} }
     }
 }
-
-proc vTcl:WindowsCleanup {} {
-    global vTcl
-    if {[info exists vTcl(sourcing)]} { return }
-    foreach w [winfo children .] {
-    	wm protocol $w WM_DELETE_WINDOW { exit }
-    }
-}
 }
 
 if {![info exists vTcl(sourcing)]} {
@@ -262,6 +254,19 @@ proc vTcl:project:info {} {
 # USER DEFINED PROCEDURES
 #
 ###########################################################
+## Procedure:  _fprsplit
+
+proc {_fprsplit} {string lsep} {
+set lret "FPR"
+set ls [split $string $lsep]
+foreach i $ls {
+ if {$i != {}} {
+  lappend lret $i
+ }
+}
+return [lrange $lret 1 end]
+}
+###########################################################
 ## Procedure:  doSearch
 
 proc {doSearch} {} {
@@ -270,7 +275,18 @@ global gVar
 set gVar(msg) "Searching process started..."
 
 
-set lfn [glob -directory $gVar(resultPATH) *.mirna]
+set lfn {}
+set lf [glob -directory $gVar(resultPATH) *]
+foreach n $lf {
+ set fn [lindex [split $n "/"] end]
+ 
+ set ext [lindex [split $fn "."] end]
+ 
+ if {$ext == "mirna"} {
+  lappend lfn $n
+ }
+
+}
 
 if {[llength $lfn] == 0} {
  set gVar(msg) "ERROR: No Result files found in the folder..."
@@ -345,20 +361,7 @@ if {$txt == "cls"} {
 
 proc {main} {argc argv} {
 ## This will clean up and call exit properly on Windows.
-vTcl:WindowsCleanup
-}
-###########################################################
-## Procedure:  _fprsplit
-
-proc {_fprsplit} {string lsep} {
-set lret "FPR"
-set ls [split $string $lsep]
-foreach i $ls {
- if {$i != {}} {
-  lappend lret $i
- }
-}
-return [lrange $lret 1 end]
+wm protocol .top23 WM_DELETE_WINDOW { exit }
 }
 
 proc init {argc argv} {
@@ -391,14 +394,14 @@ proc vTclWindow. {base {container 0}} {
     ###################
     if {!$container} {
     wm focusmodel $base passive
-    wm geometry $base 200x200+22+22; update
-    wm maxsize $base 2964 1035
-    wm minsize $base 104 1
+    wm geometry $base 1x1+0+0; update
+    wm maxsize $base 2945 1020
+    wm minsize $base 1 1
     wm overrideredirect $base 0
     wm resizable $base 1 1
     wm withdraw $base
-    wm title $base "vtcl"
-    bindtags $base "$base Vtcl all"
+    wm title $base "vtcl.tcl"
+    bindtags $base "$base Vtcl.tcl all"
     vTcl:FireEvent $base <<Create>>
     }
     ###################
@@ -445,7 +448,7 @@ proc vTclWindow.top23 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 638x422+116+102; update
+    wm geometry $base 638x422+287+134; update
     wm maxsize $base 2964 1035
     wm minsize $base 104 1
     wm overrideredirect $base 0
