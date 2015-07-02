@@ -331,6 +331,8 @@ while {![eof $fi]} {
   
   if {$name == "$gVar(search,0)-$gVar(search,1)-$gVar(search,2)"} {
    $table addrow $datos
+   $table hline
+
    incr i
   }
 
