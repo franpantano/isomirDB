@@ -349,23 +349,6 @@ set gVar(msg) "Found $i Lines..."
 return 1
 }
 ###########################################################
-## Procedure:  init
-###########################################################
-## Procedure:  main
-
-proc {main} {argc argv} {
-global gVar
-global vTcl
-
-## This will clean up and call exit properly on Windows.
-wm protocol .top23 WM_DELETE_WINDOW { exit }
-
-## This will execute only in RUN mode
-if {[catch "set vTcl(version)"] == 1} {
- source "$gVar(sysPath)/canvasTable.tcll"
-}
-}
-###########################################################
 ## Procedure:  drawTable
 
 proc {drawTable} {w h lld} {
@@ -387,11 +370,33 @@ $table frame all
 
 $w configure -scrollregion [$w bbox all]
 }
+###########################################################
+## Procedure:  init
+###########################################################
+## Procedure:  main
+
+proc {main} {argc argv} {
+global gVar
+global vTcl
+
+## This will clean up and call exit properly on Windows.
+wm protocol .top23 WM_DELETE_WINDOW { exit }
+
+## This will execute only in RUN mode
+if {[catch "set vTcl(version)"] == 1} {
+ source "$gVar(sysPath)/canvasTable.tcll"
+}
+}
 
 proc init {argc argv} {
 global gVar
 
-set gVar(sysPath) [join [lreplace [split [info script] "/\\"] end end] "/"]
+if {[info script] == "vTcl-MIRNAadv.tcl"} {
+ set gVar(sysPath) [pwd]
+} else {
+ set gVar(sysPath) [join [lreplace [split [info script] "/\\"] end end] "/"]
+}
+
 
 set gVar(resultPATH) $gVar(sysPath)
 
