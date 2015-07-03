@@ -52,14 +52,6 @@ proc Window {args} {
         destroy { if $exists {destroy $newname; return} }
     }
 }
-
-proc vTcl:WindowsCleanup {} {
-    global vTcl
-    if {[info exists vTcl(sourcing)]} { return }
-    foreach w [winfo children .] {
-    	wm protocol $w WM_DELETE_WINDOW { exit }
-    }
-}
 }
 
 if {![info exists vTcl(sourcing)]} {
@@ -229,6 +221,12 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra28.but35 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
+    namespace eval ::widgets::.top23.fra28.but22 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but23 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
     namespace eval ::widgets::.top23.fra36 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
@@ -321,16 +319,10 @@ if {$fn == {}} {
 }
 
 
-$gVar(wgetCNV) delete all
-set table [::DrawTable::drawntable $gVar(wgetCNV) -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
-#seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
-#AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
-$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
-$table hline
-
 
 set fi [open $fn r]
 
+set gVar(lld) {}
 set i 0
 while {![eof $fi]} {
  set l [gets $fi]
@@ -341,8 +333,7 @@ while {![eof $fi]} {
   set name [lindex $datos 2]
   
   if {$name == "$gVar(search,0)-$gVar(search,1)-$gVar(search,2)"} {
-   $table addrow $datos
-   $table hline
+   lappend gVar(lld) $datos
 
    incr i
   }
@@ -351,9 +342,7 @@ while {![eof $fi]} {
 }
 close $fi
 
-$table frame all
-
-$gVar(wgetCNV) configure -scrollregion [$gVar(wgetCNV) bbox all]
+drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lld)
 
 set gVar(msg) "Found $i Lines..."
 
@@ -376,6 +365,28 @@ if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
 }
 }
+###########################################################
+## Procedure:  drawTable
+
+proc {drawTable} {w h lld} {
+$w delete all
+set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+#seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
+#AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
+$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
+$table hline
+
+
+foreach ld $lld {
+ $table addrow $ld
+ $table hline
+}
+
+
+$table frame all
+
+$w configure -scrollregion [$w bbox all]
+}
 
 proc init {argc argv} {
 global gVar
@@ -392,6 +403,8 @@ set gVar(search,2) 3p
 set gVar(wgetCNV) .top23.cpd23.03
 
 set gVar(msg) "Iniciando el programa..."
+
+set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
 }
 
 init $argc $argv
@@ -409,14 +422,14 @@ proc vTclWindow. {base {container 0}} {
     ###################
     if {!$container} {
     wm focusmodel $base passive
-    wm geometry $base 200x200+66+66; update
-    wm maxsize $base 2964 1035
-    wm minsize $base 104 1
+    wm geometry $base 1x1+0+0; update
+    wm maxsize $base 2945 1020
+    wm minsize $base 1 1
     wm overrideredirect $base 0
     wm resizable $base 1 1
     wm withdraw $base
-    wm title $base "vtcl"
-    bindtags $base "$base Vtcl all"
+    wm title $base "vtcl.tcl"
+    bindtags $base "$base Vtcl.tcl all"
     vTcl:FireEvent $base <<Create>>
     }
     ###################
@@ -445,6 +458,8 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra24.ent26" "Entry1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24.lab25" "Label1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28" "Frame2" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but22" "Button7" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but23" "Button8" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.but35" "Button4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.ent26" "Entry2" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.ent32" "Entry4" vTcl:WidgetProc "Toplevel1" 1
@@ -463,7 +478,7 @@ proc vTclWindow.top23 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 638x422+116+102; update
+    wm geometry $base 638x422+288+145; update
     wm maxsize $base 2964 1035
     wm minsize $base 104 1
     wm overrideredirect $base 0
@@ -501,6 +516,14 @@ proc vTclWindow.top23 {base {container 0}} {
         -textvariable gVar(search,2) -width 5 
     button $base.fra28.but35 \
         -borderwidth 1 -command doSearch -pady 0 -text Search 
+    button $base.fra28.but22 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 0 -increasing $gVar(lld)]} \
+        -pady 0 -text {Sort Seq.} 
+    button $base.fra28.but23 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 1 -increasing $gVar(lld)]} \
+        -pady 0 -text {Sort Name} 
     frame $base.fra36 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra36.lab25 \
@@ -545,6 +568,10 @@ proc vTclWindow.top23 {base {container 0}} {
     pack $base.fra28.ent34 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra28.but35 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but22 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but23 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36 \
         -in $base -anchor center -expand 0 -fill x -side top 
