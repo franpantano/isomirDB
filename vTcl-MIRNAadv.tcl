@@ -221,10 +221,25 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra28.but35 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
-    namespace eval ::widgets::.top23.fra28.but22 {
+    namespace eval ::widgets::.top23.fra28.lab28 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but29 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
-    namespace eval ::widgets::.top23.fra28.but23 {
+    namespace eval ::widgets::.top23.fra28.but30 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but31 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but32 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but36 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.but37 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
     namespace eval ::widgets::.top23.fra36 {
@@ -463,13 +478,18 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra24.ent26" "Entry1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24.lab25" "Label1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28" "Frame2" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra28.but22" "Button7" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra28.but23" "Button8" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but29" "Button7" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but30" "Button8" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but31" "Button9" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but32" "Button10" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.but35" "Button4" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but36" "Button11" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but37" "Button12" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.ent26" "Entry2" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.ent32" "Entry4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.ent34" "Entry5" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.lab25" "Label2" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.lab28" "Label11" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.lab30" "Label4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.lab33" "Label6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36" "Frame4" vTcl:WidgetProc "Toplevel1" 1
@@ -483,7 +503,7 @@ proc vTclWindow.top23 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 638x422+288+145; update
+    wm geometry $base 736x422+107+133; update
     wm maxsize $base 2964 1035
     wm minsize $base 104 1
     wm overrideredirect $base 0
@@ -521,14 +541,32 @@ proc vTclWindow.top23 {base {container 0}} {
         -textvariable gVar(search,2) -width 5 
     button $base.fra28.but35 \
         -borderwidth 1 -command doSearch -pady 0 -text Search 
-    button $base.fra28.but22 \
+    label $base.fra28.lab28 \
+        -anchor w -text {Sort Option:} -width 10 
+    button $base.fra28.but29 \
         -borderwidth 1 \
         -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 0 -increasing $gVar(lld)]} \
-        -pady 0 -text {Sort Seq.} 
-    button $base.fra28.but23 \
+        -pady 0 -text Seq. 
+    button $base.fra28.but30 \
         -borderwidth 1 \
         -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 1 -increasing $gVar(lld)]} \
-        -pady 0 -text {Sort Name} 
+        -pady 0 -text name 
+    button $base.fra28.but31 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 5 -increasing $gVar(lld)]} \
+        -pady 0 -text mism 
+    button $base.fra28.but32 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 6 -increasing $gVar(lld)]} \
+        -pady 0 -text add 
+    button $base.fra28.but36 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 7 -increasing $gVar(lld)]} \
+        -pady 0 -text t5 
+    button $base.fra28.but37 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 8 -increasing $gVar(lld)]} \
+        -pady 0 -text t3 
     frame $base.fra36 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra36.lab25 \
@@ -574,9 +612,19 @@ proc vTclWindow.top23 {base {container 0}} {
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra28.but35 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra28.but22 \
+    pack $base.fra28.lab28 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra28.but23 \
+    pack $base.fra28.but29 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but30 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but31 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but32 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but36 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but37 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36 \
         -in $base -anchor center -expand 0 -fill x -side top 
