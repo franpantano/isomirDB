@@ -422,39 +422,58 @@ $w configure -scrollregion [$w bbox all]
 ###########################################################
 ## Procedure:  plotData
 
-proc {plotData} {w i seq start end minStart maxEnd} {
+proc {plotData} {w lld} {
 global gVar
 
-set seq [string trim $seq]
+$w delete all
+
 
 set x0 20
 set y0 20
 
-set sizeX 10
-set sizeY 15
+set sizeX 20
+set sizeY 20
 
-set x [expr $x0 + ($start-$minStart) * $sizeX + $sizeX / 2.0]
-set y [expr $y0 + $i * $sizeY]
+set y [expr $y0]
 
-for {set k 0} {$k < [string length $seq]} {incr k} {
- set c [string index $seq $k]
+set i 0
+foreach ld $lld {
+ set seq [lindex $ld 0]
+
+ set x [expr $x0 + $sizeX / 2.0]
+
+ for {set k 0} {$k < [string length $seq]} {incr k} {
+  set c [string index $seq $k]
  
- #A=rojo, T=azul, G=verde, C=amarillo
- switch $c {
-  A {set cl red}
-  T {set cl blue}
-  G {set cl green}
-  C {set cl yellow}
-  default {set cl black}
+  #A=rojo, T=azul, G=verde, C=amarillo
+  switch $c {
+   A {set cl red}
+   T {set cl blue}
+   G {set cl chartreuse}
+   C {set cl yellow}
+   default {set cl black}
+  }
+ 
+  if {$c != " "} {
+   set xi [expr $x - $sizeX/2.0]
+   set xf [expr $x + $sizeX/2.0]
+  
+   
+   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$i"]
+   #$w create line $x $y -text $c -fill $cl
+  }
+  set x [expr $x + $sizeX]
  }
- 
- 
- $w create text $x $y -text $c -fill $cl
 
- set x [expr $x + $sizeX]
+ set y [expr $y + $sizeY]
+ incr i
 }
 
 $w configure -scrollregion [$w bbox all]
+
+
+$w bind item <Any-Enter> "itemEnter $w"
+$w bind item <Any-Leave> "itemLeave $w"
 }
 ###########################################################
 ## Procedure:  init
@@ -472,6 +491,114 @@ wm protocol .top23 WM_DELETE_WINDOW { exit }
 if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
 }
+}
+###########################################################
+## Procedure:  plotData_prv
+
+proc {plotData_prv} {w lld} {
+global gVar
+
+$w delete all
+
+
+set x0 20
+set y0 20
+
+set sizeX 10
+set sizeY 15
+
+set y [expr $y0]
+
+
+foreach ld $lld {
+ set seq [lindex $ld 0]
+
+ set x [expr $x0 + $sizeX / 2.0]
+
+ for {set k 0} {$k < [string length $seq]} {incr k} {
+  set c [string index $seq $k]
+ 
+  #A=rojo, T=azul, G=verde, C=amarillo
+  switch $c {
+   A {set cl red}
+   T {set cl blue}
+   G {set cl green}
+   C {set cl yellow}
+   default {set cl black}
+  }
+ 
+  if {$c != " "} { 
+   $w create text $x $y -text $c -fill $cl
+  }
+  set x [expr $x + $sizeX]
+ }
+
+ set y [expr $y + $sizeY]
+}
+
+$w configure -scrollregion [$w bbox all]
+}
+###########################################################
+## Procedure:  doTooltip
+
+proc {doTooltip} {w x y op} {
+global gVar
+
+$w delete balloon
+
+if {$op == 1} {
+
+
+
+
+
+
+
+}
+}
+###########################################################
+## Procedure:  itemEnter
+
+proc {itemEnter} {w} {
+global gVar
+
+$w delete balloon
+
+set ltags [$w gettags current]
+set trow [lindex $ltags 1]
+set type [$w type $trow]
+
+#puts "$type -> $ltags"
+
+if {$type == "line"} {
+ set bbox [$w bbox $trow]
+ set xr [lindex $bbox 2]
+ set yr [lindex $bbox 3]
+ 
+ set row [lindex [split $trow "-"] 1]
+ 
+ set yr [expr $yr + 10]
+
+ $w create text $xr $yr -text [join [lindex $gVar(lld) $row] "/"] -tags [list balloon bt]
+ set bbox [$w bbox bt]
+ set xi [lindex $bbox 0]
+ set yi [lindex $bbox 1]
+ set xf [lindex $bbox 2]
+ set yf [lindex $bbox 3]
+ $w create rectangle $xi $yi $xf $yf -fill white -tags [list balloon bb]
+ $w lower bb bt
+ 
+}
+}
+###########################################################
+## Procedure:  itemLeave
+
+proc {itemLeave} {w} {
+global gVar
+
+$w delete balloon
+
+#puts "\titemLeave"
 }
 
 proc init {argc argv} {
@@ -651,33 +778,8 @@ proc vTclWindow.top23 {base {container 0}} {
     button $base.fra36.but39 \
         -borderwidth 1 -command {console show} -pady 0 -text Console 
     button $base.fra36.but22 \
-        -borderwidth 1 \
-        -command {$gVar(wgetCNV) delete all
-
-#plotData $gVar(wgetCNV) 0 "AAGGTTTCTGATCCTTGGSTCAAA" 30 55 5 87
-
-set minStart +1e9
-set maxEnd   -1e9
-
-foreach ld $gVar(lld) {
- set start [lindex $ld 3]
- set end   [lindex $ld 4]
- 
- if {$start < $minStart} {set minStart $start}
- if {$end   > $maxEnd  } {set maxEnd   $end  }
-}
-
-set i 0
-foreach ld $gVar(lld) {
- set seq   [lindex $ld 0]
- set start [lindex $ld 3]
- set end   [lindex $ld 4]
-
- plotData $gVar(wgetCNV) $i $seq $start $end $minStart $maxEnd
-
- incr i 
-}} \
-        -pady 0 -text PlotData 
+        -borderwidth 1 -command {plotData $gVar(wgetCNV) $gVar(lld)} -pady 0 \
+        -text PlotData 
     frame $base.cpd23 \
         -borderwidth 1 -height 30 -width 30 
     scrollbar $base.cpd23.01 \
@@ -685,7 +787,7 @@ foreach ld $gVar(lld) {
     scrollbar $base.cpd23.02 \
         -command "$base.cpd23.03 yview" 
     canvas $base.cpd23.03 \
-        -background #e9e9e9 -closeenough 1.0 -height 100 -width 100 \
+        -background white -closeenough 1.0 -height 100 -width 100 \
         -xscrollcommand "$base.cpd23.01 set" \
         -yscrollcommand "$base.cpd23.02 set" 
     label $base.lab24 \
