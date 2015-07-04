@@ -420,6 +420,50 @@ $table frame all
 $w configure -scrollregion [$w bbox all]
 }
 ###########################################################
+## Procedure:  itemEnter
+
+proc {itemEnter} {w} {
+global gVar
+
+$w delete balloon
+
+set ltags [$w gettags current]
+set trow [lindex $ltags 1]
+set type [$w type $trow]
+
+#puts "$type -> $ltags"
+
+if {$type == "line"} {
+ set bbox [$w bbox current]
+ set xr [lindex $bbox 2]
+ set yr [lindex $bbox 3]
+ 
+ set row [lindex [split $trow "-"] 1]
+ 
+ set yr [expr $yr + 10]
+
+ $w create text $xr $yr -text [join [lindex $gVar(lld) $row] "/"] -anchor w -tags [list balloon bt]
+ set bbox [$w bbox bt]
+ set xi [lindex $bbox 0]
+ set yi [lindex $bbox 1]
+ set xf [lindex $bbox 2]
+ set yf [lindex $bbox 3]
+ $w create rectangle $xi $yi $xf $yf -fill white -tags [list balloon bb]
+ $w lower bb bt
+ 
+}
+}
+###########################################################
+## Procedure:  itemLeave
+
+proc {itemLeave} {w} {
+global gVar
+
+$w delete balloon
+
+#puts "\titemLeave"
+}
+###########################################################
 ## Procedure:  plotData
 
 proc {plotData} {w lld} {
@@ -476,23 +520,6 @@ $w bind item <Any-Enter> "itemEnter $w"
 $w bind item <Any-Leave> "itemLeave $w"
 }
 ###########################################################
-## Procedure:  init
-###########################################################
-## Procedure:  main
-
-proc {main} {argc argv} {
-global gVar
-global vTcl
-
-## This will clean up and call exit properly on Windows.
-wm protocol .top23 WM_DELETE_WINDOW { exit }
-
-## This will execute only in RUN mode
-if {[catch "set vTcl(version)"] == 1} {
- source "$gVar(sysPath)/canvasTable.tcll"
-}
-}
-###########################################################
 ## Procedure:  plotData_prv
 
 proc {plotData_prv} {w lld} {
@@ -539,66 +566,21 @@ foreach ld $lld {
 $w configure -scrollregion [$w bbox all]
 }
 ###########################################################
-## Procedure:  doTooltip
-
-proc {doTooltip} {w x y op} {
-global gVar
-
-$w delete balloon
-
-if {$op == 1} {
-
-
-
-
-
-
-
-}
-}
+## Procedure:  init
 ###########################################################
-## Procedure:  itemEnter
+## Procedure:  main
 
-proc {itemEnter} {w} {
+proc {main} {argc argv} {
 global gVar
+global vTcl
 
-$w delete balloon
+## This will clean up and call exit properly on Windows.
+wm protocol .top23 WM_DELETE_WINDOW { exit }
 
-set ltags [$w gettags current]
-set trow [lindex $ltags 1]
-set type [$w type $trow]
-
-#puts "$type -> $ltags"
-
-if {$type == "line"} {
- set bbox [$w bbox $trow]
- set xr [lindex $bbox 2]
- set yr [lindex $bbox 3]
- 
- set row [lindex [split $trow "-"] 1]
- 
- set yr [expr $yr + 10]
-
- $w create text $xr $yr -text [join [lindex $gVar(lld) $row] "/"] -tags [list balloon bt]
- set bbox [$w bbox bt]
- set xi [lindex $bbox 0]
- set yi [lindex $bbox 1]
- set xf [lindex $bbox 2]
- set yf [lindex $bbox 3]
- $w create rectangle $xi $yi $xf $yf -fill white -tags [list balloon bb]
- $w lower bb bt
- 
+## This will execute only in RUN mode
+if {[catch "set vTcl(version)"] == 1} {
+ source "$gVar(sysPath)/canvasTable.tcll"
 }
-}
-###########################################################
-## Procedure:  itemLeave
-
-proc {itemLeave} {w} {
-global gVar
-
-$w delete balloon
-
-#puts "\titemLeave"
 }
 
 proc init {argc argv} {
