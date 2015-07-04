@@ -242,6 +242,9 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra28.but37 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
+    namespace eval ::widgets::.top23.fra28.but22 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
     namespace eval ::widgets::.top23.fra36 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
@@ -422,6 +425,8 @@ $w configure -scrollregion [$w bbox all]
 proc {plotData} {w i seq start end minStart maxEnd} {
 global gVar
 
+set seq [string trim $seq]
+
 set x0 20
 set y0 20
 
@@ -440,7 +445,7 @@ for {set k 0} {$k < [string length $seq]} {incr k} {
   T {set cl blue}
   G {set cl green}
   C {set cl yellow}
-  defalut {set cl black}
+  default {set cl black}
  }
  
  
@@ -544,6 +549,7 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra24.ent26" "Entry1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24.lab25" "Label1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28" "Frame2" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.but22" "Button14" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.but29" "Button7" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.but30" "Button8" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.but31" "Button9" vTcl:WidgetProc "Toplevel1" 1
@@ -570,7 +576,7 @@ proc vTclWindow.top23 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 736x422+107+133; update
+    wm geometry $base 884x429+107+133; update
     wm maxsize $base 2964 1035
     wm minsize $base 104 1
     wm overrideredirect $base 0
@@ -634,6 +640,10 @@ proc vTclWindow.top23 {base {container 0}} {
         -borderwidth 1 \
         -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 8 -increasing $gVar(lld)]} \
         -pady 0 -text t3 
+    button $base.fra28.but22 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lld)} -pady 0 \
+        -text Original 
     frame $base.fra36 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra36.lab25 \
@@ -720,6 +730,8 @@ foreach ld $gVar(lld) {
     pack $base.fra28.but36 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra28.but37 \
+        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.but22 \
         -in $base.fra28 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36 \
         -in $base -anchor center -expand 0 -fill x -side top 
