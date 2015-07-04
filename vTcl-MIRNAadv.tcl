@@ -251,6 +251,9 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra36.but39 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
+    namespace eval ::widgets::.top23.fra36.but22 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
     namespace eval ::widgets::.top23.cpd23 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
@@ -357,6 +360,34 @@ while {![eof $fi]} {
 }
 close $fi
 
+
+#Sorting Seqs vertically
+set minStart +1e9
+
+foreach ld $gVar(lld) {
+ set start [lindex $ld 3]
+ 
+ if {$start < $minStart} {set minStart $start}
+}
+
+set i 0
+foreach ld $gVar(lld) {
+ set seq   [lindex $ld 0]
+ set start [lindex $ld 3]
+
+ set seqm $seq
+ for {set j 0} {$j < [expr $start-$minStart]} {incr j} {
+  set seqm " $seqm"
+ }
+ 
+ set ldm [lreplace $ld 0 0 $seqm]
+
+ set gVar(lld) [lreplace $gVar(lld) $i $i $ldm] 
+ 
+ incr i 
+}
+
+
 drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lld)
 
 set gVar(msg) "Found $i Lines..."
@@ -382,6 +413,41 @@ foreach ld $lld {
 
 
 $table frame all
+
+$w configure -scrollregion [$w bbox all]
+}
+###########################################################
+## Procedure:  plotData
+
+proc {plotData} {w i seq start end minStart maxEnd} {
+global gVar
+
+set x0 20
+set y0 20
+
+set sizeX 10
+set sizeY 15
+
+set x [expr $x0 + ($start-$minStart) * $sizeX + $sizeX / 2.0]
+set y [expr $y0 + $i * $sizeY]
+
+for {set k 0} {$k < [string length $seq]} {incr k} {
+ set c [string index $seq $k]
+ 
+ #A=rojo, T=azul, G=verde, C=amarillo
+ switch $c {
+  A {set cl red}
+  T {set cl blue}
+  G {set cl green}
+  C {set cl yellow}
+  defalut {set cl black}
+ }
+ 
+ 
+ $w create text $x $y -text $c -fill $cl
+
+ set x [expr $x + $sizeX]
+}
 
 $w configure -scrollregion [$w bbox all]
 }
@@ -493,6 +559,7 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra28.lab30" "Label4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.lab33" "Label6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36" "Frame4" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra36.but22" "Button13" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but39" "Button6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.lab25" "Label7" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.lab24" "Label10" vTcl:WidgetProc "Toplevel1" 1
@@ -573,6 +640,34 @@ proc vTclWindow.top23 {base {container 0}} {
         -anchor w -text Results: -width 15 
     button $base.fra36.but39 \
         -borderwidth 1 -command {console show} -pady 0 -text Console 
+    button $base.fra36.but22 \
+        -borderwidth 1 \
+        -command {$gVar(wgetCNV) delete all
+
+#plotData $gVar(wgetCNV) 0 "AAGGTTTCTGATCCTTGGSTCAAA" 30 55 5 87
+
+set minStart +1e9
+set maxEnd   -1e9
+
+foreach ld $gVar(lld) {
+ set start [lindex $ld 3]
+ set end   [lindex $ld 4]
+ 
+ if {$start < $minStart} {set minStart $start}
+ if {$end   > $maxEnd  } {set maxEnd   $end  }
+}
+
+set i 0
+foreach ld $gVar(lld) {
+ set seq   [lindex $ld 0]
+ set start [lindex $ld 3]
+ set end   [lindex $ld 4]
+
+ plotData $gVar(wgetCNV) $i $seq $start $end $minStart $maxEnd
+
+ incr i 
+}} \
+        -pady 0 -text PlotData 
     frame $base.cpd23 \
         -borderwidth 1 -height 30 -width 30 
     scrollbar $base.cpd23.01 \
@@ -580,7 +675,7 @@ proc vTclWindow.top23 {base {container 0}} {
     scrollbar $base.cpd23.02 \
         -command "$base.cpd23.03 yview" 
     canvas $base.cpd23.03 \
-        -background white -closeenough 1.0 -height 100 -width 100 \
+        -background #e9e9e9 -closeenough 1.0 -height 100 -width 100 \
         -xscrollcommand "$base.cpd23.01 set" \
         -yscrollcommand "$base.cpd23.02 set" 
     label $base.lab24 \
@@ -631,6 +726,8 @@ proc vTclWindow.top23 {base {container 0}} {
     pack $base.fra36.lab25 \
         -in $base.fra36 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36.but39 \
+        -in $base.fra36 -anchor center -expand 0 -fill none -side right 
+    pack $base.fra36.but22 \
         -in $base.fra36 -anchor center -expand 0 -fill none -side right 
     pack $base.cpd23 \
         -in $base -anchor center -expand 1 -fill both -side top 
