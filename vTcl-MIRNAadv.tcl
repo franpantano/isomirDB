@@ -333,6 +333,32 @@ foreach i $ls {
 return [lrange $lret 1 end]
 }
 ###########################################################
+## Procedure:  doFilter
+
+proc {doFilter} {} {
+global gVar
+
+#set gVar(filter,mism) "*"
+#set gVar(filter,add)  "*"
+#set gVar(filter,t5)   "*"
+#set gVar(filter,t3)   "*"
+
+#set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
+
+set gVar(lldf) {}
+foreach ld $gVar(lld) {
+ set mism [lindex $ld 5]
+ set add  [lindex $ld 6]
+ set t5   [lindex $ld 7]
+ set t3   [lindex $ld 8]
+
+ if {([string match $gVar(filter,mism) $mism]) && ([string match $gVar(filter,add) $add]) && ([string match $gVar(filter,t5) $t5]) && ([string match $gVar(filter,t3) $t3])} {
+  lappend gVar(lldf) $ld
+ }
+
+}
+}
+###########################################################
 ## Procedure:  doSearch
 
 proc {doSearch} {} {
@@ -483,7 +509,7 @@ if {$type == "line"} {
  
  set yr [expr $yr + 10]
 
- $w create text $xr $yr -text [join [lindex $gVar(lld) $row] "/"] -anchor w -tags [list balloon bt]
+ $w create text $xr $yr -text [join [lindex $gVar(lldf) $row] "/"] -anchor w -tags [list balloon bt]
  set bbox [$w bbox bt]
  set xi [lindex $bbox 0]
  set yi [lindex $bbox 1]
@@ -621,32 +647,6 @@ wm protocol .top23 WM_DELETE_WINDOW { exit }
 ## This will execute only in RUN mode
 if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
-}
-}
-###########################################################
-## Procedure:  doFilter
-
-proc {doFilter} {} {
-global gVar
-
-#set gVar(filter,mism) "*"
-#set gVar(filter,add)  "*"
-#set gVar(filter,t5)   "*"
-#set gVar(filter,t3)   "*"
-
-#set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
-
-set gVar(lldf) {}
-foreach ld $gVar(lld) {
- set mism [lindex $ld 5]
- set add  [lindex $ld 6]
- set t5   [lindex $ld 7]
- set t3   [lindex $ld 8]
-
- if {([string match $gVar(filter,mism) $mism]) && ([string match $gVar(filter,add) $add]) && ([string match $gVar(filter,t5) $t5]) && ([string match $gVar(filter,t3) $t3])} {
-  lappend gVar(lldf) $ld
- }
-
 }
 }
 
