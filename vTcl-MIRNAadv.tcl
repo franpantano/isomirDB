@@ -422,6 +422,9 @@ if {$fn == {}} {
 
 
 ###############################################################
+set gVar(msg) "Reading .FAX file..."
+update
+ 
 set fnx [lindex [split $fn "/"] end]
 set fnx [join [lreplace [split $fnx "."] end end "fax"] "."]
 
@@ -438,9 +441,9 @@ while {![eof $fi]} {
 
   set name [lindex $datos 0]
   set exp  [lindex $datos 1]
-  set nose [lindex $datos 2]
+  set cnts [lindex $datos 2]
   
-  set Tmp($name) [list $exp $nose]
+  set Tmp($name) [list $exp $cnts]
  }
 
 }
@@ -450,6 +453,9 @@ close $fi
 
 
 ###############################################################
+set gVar(msg) "Reading .MIRNA file..."
+update
+
 set fi [open $fn r]
 
 set gVar(lld) {}
@@ -477,7 +483,10 @@ while {![eof $fi]} {
 close $fi
 
 
-#Sorting Seqs vertically
+###############################################################
+set gVar(msg) "Sorting Seqs vertically..."
+update
+
 set minStart +1e9
 
 foreach ld $gVar(lld) {
@@ -517,10 +526,10 @@ return 1
 
 proc {drawTable} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12 15 6} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12 15 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 #seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
 #AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
-$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment nose}
+$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment counts}
 $table hline
 
 
@@ -729,7 +738,7 @@ set gVar(wgetCNV) .top23.cpd23.03
 
 set gVar(msg) "Iniciando el programa..."
 
-set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment nose}
+set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment counts}
 }
 
 init $argc $argv
@@ -842,7 +851,7 @@ proc vTclWindow.top23 {base {container 0}} {
     frame $base.fra24.fra22 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra24.fra22.lab25 \
-        -anchor w -text {Results Folder} -width 15 
+        -anchor w -text {FASTAx Folder} -width 15 
     entry $base.fra24.fra22.ent26 \
         -background white -borderwidth 1 -textvariable gVar(fastaPATH) 
     button $base.fra24.fra22.but27 \
@@ -852,7 +861,7 @@ proc vTclWindow.top23 {base {container 0}} {
     frame $base.fra24.fra23 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra24.fra23.lab25 \
-        -anchor w -text {Results Folder} -width 15 
+        -anchor w -text {MIRNA Folder} -width 15 
     entry $base.fra24.fra23.ent26 \
         -background white -borderwidth 1 -textvariable gVar(resultPATH) 
     button $base.fra24.fra23.but27 \

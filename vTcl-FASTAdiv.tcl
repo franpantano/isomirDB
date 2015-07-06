@@ -430,7 +430,7 @@ while {![eof $fi]} {
   set mirn [lindex $datos 0]
   set name [lindex $datos 1]
   set exp  [lindex $datos 3]
-  set nose [lindex $datos 4]
+  set cnts [lindex $datos 4]
   
 
   if {$mirn != $mirn_prv} {
@@ -448,7 +448,7 @@ while {![eof $fi]} {
    set fo [open $ofn a+]
   }
   
-  puts $fo "$name\t$exp\t$nose"
+  puts $fo "$name\t$exp\t$cnts"
  }
 
  incr i
