@@ -351,7 +351,7 @@ close $fi
 set totl $i
 
 ############################################################
-_putMsg "Procesando Datos de Entrada..."
+_putMsg "Procesando Datos de Entrada 1/2..."
 
 set fi [open $ifname r]
 
@@ -397,6 +397,58 @@ while {![eof $fi]} {
   
   puts $fo ">$name"
   puts $fo $seqm
+ }
+
+ incr i
+
+ set per [expr 100 * $i / $totl]
+ if {$per > $per_prv} {
+  _StatBar $per
+  set per_prv $per
+ }
+}
+close $fi
+close $fo
+
+
+############################################################
+_putMsg "Procesando Datos de Entrada 2/2..."
+
+set fi [open $ifname r]
+
+set fo "null"
+
+set per_prv -1
+set mirn_prv "null"
+set i 0
+while {![eof $fi]} {
+ set l [gets $fi]
+ if {[string length $l] > 0} {
+ 
+  set datos [_fprsplit $l " \t"]
+
+  set mirn [lindex $datos 0]
+  set name [lindex $datos 1]
+  set exp  [lindex $datos 3]
+  set nose [lindex $datos 4]
+  
+
+  if {$mirn != $mirn_prv} {
+   set mirn_prv $mirn
+   
+   if {$fo != "null"} {
+    close $fo
+   }
+
+   set splfn [split $ofname "."]
+   set prefn [join [lreplace $splfn end end] "."]
+   set extfn [lindex $splfn end]
+   set ofn "${prefn}_$Mirna($mirn).${extfn}x"
+
+   set fo [open $ofn a+]
+  }
+  
+  puts $fo "$name\t$exp\t$nose"
  }
 
  incr i
