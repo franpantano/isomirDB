@@ -188,13 +188,28 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra24 {
         array set save {-borderwidth 1 -height 1 -relief 1 -width 1}
     }
-    namespace eval ::widgets::.top23.fra24.lab25 {
+    namespace eval ::widgets::.top23.fra24.fra22 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra24.fra22.lab25 {
         array set save {-anchor 1 -text 1 -width 1}
     }
-    namespace eval ::widgets::.top23.fra24.ent26 {
+    namespace eval ::widgets::.top23.fra24.fra22.ent26 {
         array set save {-background 1 -borderwidth 1 -textvariable 1}
     }
-    namespace eval ::widgets::.top23.fra24.but27 {
+    namespace eval ::widgets::.top23.fra24.fra22.but27 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra24.fra23 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra24.fra23.lab25 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra24.fra23.ent26 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top23.fra24.fra23.but27 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
     namespace eval ::widgets::.top23.fra28 {
@@ -406,6 +421,35 @@ if {$fn == {}} {
 
 
 
+###############################################################
+set fnx [lindex [split $fn "/"] end]
+set fnx [join [lreplace [split $fnx "."] end end "fax"] "."]
+
+set fnx [join [list $gVar(fastaPATH) ${fnx}] "/"]
+
+set fi [open $fnx r]
+
+set i 0
+while {![eof $fi]} {
+ set l [gets $fi]
+ if {[string length $l] > 0} {
+ 
+  set datos [_fprsplit $l " \t"]
+
+  set name [lindex $datos 0]
+  set exp  [lindex $datos 1]
+  set nose [lindex $datos 2]
+  
+  set Tmp($name) [list $exp $nose]
+ }
+
+}
+
+close $fi
+
+
+
+###############################################################
 set fi [open $fn r]
 
 set gVar(lld) {}
@@ -416,9 +460,13 @@ while {![eof $fi]} {
  
   set datos [_fprsplit $l " \t"]
 
-  set name [lindex $datos 2]
+  set namex [lindex $datos 1]
+  set name  [lindex $datos 2]
   
   if {$name == "$gVar(search,0)-$gVar(search,1)-$gVar(search,2)"} {
+   lappend datos [lindex $Tmp($namex) 0]
+   lappend datos [lindex $Tmp($namex) 1]
+
    lappend gVar(lld) $datos
 
    incr i
@@ -469,10 +517,10 @@ return 1
 
 proc {drawTable} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12 15 6} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 #seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
 #AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
-$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
+$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment nose}
 $table hline
 
 
@@ -660,6 +708,7 @@ if {[info script] == "vTcl-MIRNAadv.tcl"} {
 }
 
 
+set gVar(fastaPATH)  $gVar(sysPath)
 set gVar(resultPATH) $gVar(sysPath)
 
 set gVar(search,0) cel
@@ -680,7 +729,7 @@ set gVar(wgetCNV) .top23.cpd23.03
 
 set gVar(msg) "Iniciando el programa..."
 
-set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
+set gVar(tTitles) {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment nose}
 }
 
 init $argc $argv
@@ -730,9 +779,14 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.cpd23.02" "Scrollbar4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.cpd23.03" "Canvas1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24" "Frame1" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra24.but27" "Button1" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra24.ent26" "Entry1" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra24.lab25" "Label1" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra22" "Frame10" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra22.but27" "Button32" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra22.ent26" "Entry18" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra22.lab25" "Label26" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra23" "Frame11" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra23.but27" "Button33" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra23.ent26" "Entry19" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra24.fra23.lab25" "Label27" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28" "Frame2" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.fra22" "Frame7" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.fra22.but35" "Button15" vTcl:WidgetProc "Toplevel1" 1
@@ -785,11 +839,23 @@ proc vTclWindow.top23 {base {container 0}} {
     }
     frame $base.fra24 \
         -borderwidth 1 -relief groove -height 75 -width 125 
-    label $base.fra24.lab25 \
+    frame $base.fra24.fra22 \
+        -borderwidth 1 -height 75 -width 125 
+    label $base.fra24.fra22.lab25 \
         -anchor w -text {Results Folder} -width 15 
-    entry $base.fra24.ent26 \
+    entry $base.fra24.fra22.ent26 \
+        -background white -borderwidth 1 -textvariable gVar(fastaPATH) 
+    button $base.fra24.fra22.but27 \
+        -borderwidth 1 \
+        -command {set gVar(fastaPATH) [tk_chooseDirectory -parent .top23 -title "Select FASTA Folder" -mustexist 1 -initialdir $gVar(fastaPATH)]} \
+        -pady 0 -text Browse 
+    frame $base.fra24.fra23 \
+        -borderwidth 1 -height 75 -width 125 
+    label $base.fra24.fra23.lab25 \
+        -anchor w -text {Results Folder} -width 15 
+    entry $base.fra24.fra23.ent26 \
         -background white -borderwidth 1 -textvariable gVar(resultPATH) 
-    button $base.fra24.but27 \
+    button $base.fra24.fra23.but27 \
         -borderwidth 1 \
         -command {set gVar(resultPATH) [tk_chooseDirectory -parent .top23 -title "Select Results Folder" -mustexist 1 -initialdir $gVar(resultPATH)]} \
         -pady 0 -text Browse 
@@ -902,12 +968,22 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
     ###################
     pack $base.fra24 \
         -in $base -anchor center -expand 0 -fill x -side top 
-    pack $base.fra24.lab25 \
-        -in $base.fra24 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra24.ent26 \
-        -in $base.fra24 -anchor center -expand 1 -fill x -side left 
-    pack $base.fra24.but27 \
-        -in $base.fra24 -anchor center -expand 0 -fill y -side top 
+    pack $base.fra24.fra22 \
+        -in $base.fra24 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra24.fra22.lab25 \
+        -in $base.fra24.fra22 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra24.fra22.ent26 \
+        -in $base.fra24.fra22 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra24.fra22.but27 \
+        -in $base.fra24.fra22 -anchor center -expand 0 -fill y -side top 
+    pack $base.fra24.fra23 \
+        -in $base.fra24 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra24.fra23.lab25 \
+        -in $base.fra24.fra23 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra24.fra23.ent26 \
+        -in $base.fra24.fra23 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra24.fra23.but27 \
+        -in $base.fra24.fra23 -anchor center -expand 0 -fill y -side top 
     pack $base.fra28 \
         -in $base -anchor center -expand 0 -fill x -side top 
     pack $base.fra28.fra22 \
