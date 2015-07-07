@@ -182,6 +182,33 @@ proc {vTcl:toplevel} {args} {
 
 if {[info exists vTcl(sourcing)]} {
 proc vTcl:project:info {} {
+    namespace eval ::widgets::.top22 {
+        array set save {}
+    }
+    namespace eval ::widgets::.top22.fra23 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra23.lab25 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra23.ent26 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top22.fra23.but27 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top22.fra24 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra24.01 {
+        array set save {-command 1 -orient 1}
+    }
+    namespace eval ::widgets::.top22.fra24.02 {
+        array set save {-command 1}
+    }
+    namespace eval ::widgets::.top22.fra24.03 {
+        array set save {-background 1 -closeenough 1 -height 1 -width 1 -xscrollcommand 1 -yscrollcommand 1}
+    }
     namespace eval ::widgets::.top23 {
         array set save {}
     }
@@ -328,33 +355,6 @@ proc vTcl:project:info {} {
     }
     namespace eval ::widgets::.top23.lab24 {
         array set save {-anchor 1 -text 1 -textvariable 1}
-    }
-    namespace eval ::widgets::.top22 {
-        array set save {}
-    }
-    namespace eval ::widgets::.top22.fra23 {
-        array set save {-borderwidth 1 -height 1 -width 1}
-    }
-    namespace eval ::widgets::.top22.fra23.lab25 {
-        array set save {-anchor 1 -text 1 -width 1}
-    }
-    namespace eval ::widgets::.top22.fra23.ent26 {
-        array set save {-background 1 -borderwidth 1 -textvariable 1}
-    }
-    namespace eval ::widgets::.top22.fra23.but27 {
-        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
-    }
-    namespace eval ::widgets::.top22.fra24 {
-        array set save {-borderwidth 1 -height 1 -width 1}
-    }
-    namespace eval ::widgets::.top22.fra24.01 {
-        array set save {-command 1 -orient 1}
-    }
-    namespace eval ::widgets::.top22.fra24.02 {
-        array set save {-command 1}
-    }
-    namespace eval ::widgets::.top22.fra24.03 {
-        array set save {-background 1 -closeenough 1 -height 1 -width 1 -xscrollcommand 1 -yscrollcommand 1}
     }
     namespace eval ::widgets_bindings {
         set tagslist {}
@@ -588,6 +588,26 @@ $table frame all
 $w configure -scrollregion [$w bbox all]
 }
 ###########################################################
+## Procedure:  drawTableExp
+
+proc {drawTableExp} {w h lld} {
+$w delete all
+set table [::DrawTable::drawntable $w -columnwidths {20 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+$table headers {experiment counts}
+$table hline
+
+
+foreach ld $lld {
+ $table addrow $ld
+ $table hline
+}
+
+
+$table frame all
+
+$w configure -scrollregion [$w bbox all]
+}
+###########################################################
 ## Procedure:  itemEnter
 
 proc {itemEnter} {w} {
@@ -749,26 +769,6 @@ wm protocol .top23 WM_DELETE_WINDOW { exit }
 if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
 }
-}
-###########################################################
-## Procedure:  drawTableExp
-
-proc {drawTableExp} {w h lld} {
-$w delete all
-set table [::DrawTable::drawntable $w -columnwidths {20 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
-$table headers {experiment counts}
-$table hline
-
-
-foreach ld $lld {
- $table addrow $ld
- $table hline
-}
-
-
-$table frame all
-
-$w configure -scrollregion [$w bbox all]
 }
 
 proc init {argc argv} {
@@ -1034,7 +1034,12 @@ proc vTclWindow.top23 {base {container 0}} {
         -background white -borderwidth 1 -justify center \
         -textvariable gVar(search,2) -width 5 
     button $base.fra28.fra22.but35 \
-        -borderwidth 1 -command doSearch -pady 0 -text Search 
+        -borderwidth 1 \
+        -command {set gVar(lld)  {}
+set gVar(lldf) {}
+
+doSearch} -pady 0 \
+        -text Search 
     frame $base.fra28.fra23 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra28.fra23.lab28 \
