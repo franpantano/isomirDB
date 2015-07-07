@@ -188,37 +188,52 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top17.fra23 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra23.lab22 {
-        array set save {-anchor 1 -borderwidth 1 -justify 1 -text 1 -width 1}
-    }
-    namespace eval ::widgets::.top17.fra23.ent23 {
-        array set save {-borderwidth 1 -textvariable 1}
-    }
-    namespace eval ::widgets::.top17.fra23.but24 {
-        array set save {-borderwidth 1 -command 1 -padx 1 -pady 1 -text 1 -width 1}
-    }
-    namespace eval ::widgets::.top17.fra28 {
+    namespace eval ::widgets::.top17.fra23.fra23 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra28.lab22 {
+    namespace eval ::widgets::.top17.fra23.fra23.lab22 {
         array set save {-anchor 1 -borderwidth 1 -justify 1 -text 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra28.ent23 {
-        array set save {-borderwidth 1 -textvariable 1}
+    namespace eval ::widgets::.top17.fra23.fra23.ent23 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
     }
-    namespace eval ::widgets::.top17.fra28.but24 {
+    namespace eval ::widgets::.top17.fra23.fra23.but24 {
         array set save {-borderwidth 1 -command 1 -padx 1 -pady 1 -text 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra29 {
+    namespace eval ::widgets::.top17.fra23.fra24 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra29.lab34 {
+    namespace eval ::widgets::.top17.fra23.fra24.lab22 {
+        array set save {-anchor 1 -borderwidth 1 -justify 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra24.ent23 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra24.but24 {
+        array set save {-borderwidth 1 -command 1 -padx 1 -pady 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra25 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra25.lab22 {
+        array set save {-anchor 1 -borderwidth 1 -justify 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra25.ent23 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra25.but24 {
+        array set save {-borderwidth 1 -command 1 -padx 1 -pady 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra26 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top17.fra23.fra26.lab34 {
         array set save {-anchor 1 -borderwidth 1 -text 1 -width 1}
     }
-    namespace eval ::widgets::.top17.fra29.ent35 {
-        array set save {-borderwidth 1 -textvariable 1}
+    namespace eval ::widgets::.top17.fra23.fra26.ent35 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
     }
-    namespace eval ::widgets::.top17.fra29.but36 {
+    namespace eval ::widgets::.top17.fra23.fra26.but36 {
         array set save {-borderwidth 1 -command 1 -padx 1 -pady 1 -text 1 -width 1}
     }
     namespace eval ::widgets::.top17.fra30 {
@@ -310,7 +325,7 @@ return [lrange $lret 1 end]
 ###########################################################
 ## Procedure:  _newLeeDatosIn
 
-proc {_newLeeDatosIn} {ifname ofname mirnafn} {
+proc {_newLeeDatosIn} {ifname ofname mirnafn expfn} {
 global GVar
 
 set lfn [glob -directory [join [lreplace [split $ofname "/\\"] end end] "/"] *]
@@ -333,6 +348,27 @@ while {![eof $fi]} {
   set id [string range [lindex $datos 2] 0 2]
 
   set Mirna($nm) $id
+ }
+}
+close $fi
+
+############################################################
+_putMsg "Procesando Fichero EXPERIMENT..."
+
+set fi [open $expfn r]
+while {![eof $fi]} {
+ set l [gets $fi]
+ if {[string length $l] > 0} {
+ 
+  set datos [_fprsplit $l "\t"]
+
+  set ne [lindex $datos 1]
+  set c3 [lindex $datos 2]
+  set c4 [lindex $datos 3]
+  set c5 [lindex $datos 4]
+  set c7 [lindex $datos 6]
+
+  set Exp($ne) [list $c3 $c4 $c5 $c7]
  }
 }
 close $fi
@@ -448,7 +484,8 @@ while {![eof $fi]} {
    set fo [open $ofn a+]
   }
   
-  puts $fo "$name\t$exp\t$cnts"
+  #puts $fo "$name\t$exp\t$cnts"
+  puts $fo "[join [concat [list $name $exp $cnts] $Exp($exp)] "\t"]"
  }
 
  incr i
@@ -492,6 +529,7 @@ global GVar
 set GVar(file1) "/file1"
 set GVar(file2) "/file2"
 set GVar(file4) "/file4"
+set GVar(file5) "/file5"
 
 set GVar(Wget,StatBar) .top17.fra32.lab24
 
@@ -540,17 +578,22 @@ proc vTclWindow.top17 {base {container 0}} {
 
     global widget
     vTcl:DefineAlias "$base.fra23" "Frame13" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra23.but24" "Button1" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra23.ent23" "Entry1" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra23.lab22" "Label17" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra28" "Frame16" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra28.but24" "Button4" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra28.ent23" "Entry3" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra28.lab22" "Label19" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra29" "Frame14" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra29.but36" "Button2" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra29.ent35" "Entry2" vTcl:WidgetProc "$base" 1
-    vTcl:DefineAlias "$base.fra29.lab34" "Label18" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra23" "Frame18" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra23.but24" "Button6" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra23.ent23" "Entry5" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra23.lab22" "Label21" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra24" "Frame19" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra24.but24" "Button7" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra24.ent23" "Entry6" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra24.lab22" "Label22" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra25" "Frame16" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra25.but24" "Button4" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra25.ent23" "Entry3" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra25.lab22" "Label19" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra26" "Frame14" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra26.but36" "Button2" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra26.ent35" "Entry2" vTcl:WidgetProc "$base" 1
+    vTcl:DefineAlias "$base.fra23.fra26.lab34" "Label18" vTcl:WidgetProc "$base" 1
     vTcl:DefineAlias "$base.fra30" "Frame15" vTcl:WidgetProc "$base" 1
     vTcl:DefineAlias "$base.fra30.but19" "Button3" vTcl:WidgetProc "$base" 1
     vTcl:DefineAlias "$base.fra32" "Frame12" vTcl:WidgetProc "$base" 1
@@ -563,7 +606,7 @@ proc vTclWindow.top17 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 488x182+120+141; update
+    wm geometry $base 488x245+120+141; update
     wm maxsize $base 1028 748
     wm minsize $base 132 2
     wm overrideredirect $base 0
@@ -574,37 +617,52 @@ proc vTclWindow.top17 {base {container 0}} {
     }
     frame $base.fra23 \
         -borderwidth 2 -height 75 -width 125 
-    label $base.fra23.lab22 \
+    frame $base.fra23.fra23 \
+        -borderwidth 2 -height 75 -width 125 
+    label $base.fra23.fra23.lab22 \
         -anchor w -borderwidth 1 -justify left -text {Fichero mirnaTXT:} \
         -width 16 
-    entry $base.fra23.ent23 \
-        -borderwidth 1 -textvariable GVar(file2) 
-    button $base.fra23.but24 \
+    entry $base.fra23.fra23.ent23 \
+        -background white -borderwidth 1 -textvariable GVar(file2) 
+    button $base.fra23.fra23.but24 \
         -borderwidth 1 \
         -command {if {[_FileDialog .top17 open] == 1} {
   set GVar(file2) $GVar(FileName)
 }} \
         -padx 9 -pady 3 -text buscar -width 10 
-    frame $base.fra28 \
+    frame $base.fra23.fra24 \
         -borderwidth 2 -height 75 -width 125 
-    label $base.fra28.lab22 \
+    label $base.fra23.fra24.lab22 \
+        -anchor w -borderwidth 1 -justify left -text {Fichero exper.TXT:} \
+        -width 16 
+    entry $base.fra23.fra24.ent23 \
+        -background white -borderwidth 1 -textvariable GVar(file5) 
+    button $base.fra23.fra24.but24 \
+        -borderwidth 1 \
+        -command {if {[_FileDialog .top17 open] == 1} {
+  set GVar(file5) $GVar(FileName)
+}} \
+        -padx 9 -pady 3 -text buscar -width 10 
+    frame $base.fra23.fra25 \
+        -borderwidth 2 -height 75 -width 125 
+    label $base.fra23.fra25.lab22 \
         -anchor w -borderwidth 1 -justify left -text {Fichero inTXT:} \
         -width 16 
-    entry $base.fra28.ent23 \
-        -borderwidth 1 -textvariable GVar(file1) 
-    button $base.fra28.but24 \
+    entry $base.fra23.fra25.ent23 \
+        -background white -borderwidth 1 -textvariable GVar(file1) 
+    button $base.fra23.fra25.but24 \
         -borderwidth 1 \
         -command {if {[_FileDialog .top17 open] == 1} {
   set GVar(file1) $GVar(FileName)
 }} \
         -padx 9 -pady 3 -text buscar -width 10 
-    frame $base.fra29 \
+    frame $base.fra23.fra26 \
         -borderwidth 2 -height 75 -width 125 
-    label $base.fra29.lab34 \
+    label $base.fra23.fra26.lab34 \
         -anchor w -borderwidth 1 -text {Fichero outFA:} -width 16 
-    entry $base.fra29.ent35 \
-        -borderwidth 1 -textvariable GVar(file4) 
-    button $base.fra29.but36 \
+    entry $base.fra23.fra26.ent35 \
+        -background white -borderwidth 1 -textvariable GVar(file4) 
+    button $base.fra23.fra26.but36 \
         -borderwidth 1 \
         -command {if {[_FileDialog .top17 save] == 1} {
   set GVar(file4) $GVar(FileName)
@@ -613,7 +671,8 @@ proc vTclWindow.top17 {base {container 0}} {
     frame $base.fra30 \
         -borderwidth 2 -height 75 -width 125 
     button $base.fra30.but19 \
-        -command {_newLeeDatosIn $GVar(file1) $GVar(file4) $GVar(file2)} \
+        \
+        -command {_newLeeDatosIn $GVar(file1) $GVar(file4) $GVar(file2) $GVar(file5)} \
         -padx 9 -pady 3 -relief groove -text Procesar... 
     label $base.lab31 \
         -anchor w -borderwidth 1 -font {{MS Sans Serif} 12 bold} \
@@ -628,30 +687,41 @@ proc vTclWindow.top17 {base {container 0}} {
     ###################
     pack $base.fra23 \
         -in $base -anchor center -expand 0 -fill x -side top 
-    pack $base.fra23.lab22 \
-        -in $base.fra23 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra23.ent23 \
-        -in $base.fra23 -anchor center -expand 1 -fill x -side left 
-    pack $base.fra23.but24 \
-        -in $base.fra23 -anchor center -expand 0 -fill none -padx 5 \
+    pack $base.fra23.fra23 \
+        -in $base.fra23 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra23.fra23.lab22 \
+        -in $base.fra23.fra23 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra23.fra23.ent23 \
+        -in $base.fra23.fra23 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra23.fra23.but24 \
+        -in $base.fra23.fra23 -anchor center -expand 0 -fill none -padx 5 \
         -side right 
-    pack $base.fra28 \
-        -in $base -anchor center -expand 0 -fill x -side top 
-    pack $base.fra28.lab22 \
-        -in $base.fra28 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra28.ent23 \
-        -in $base.fra28 -anchor center -expand 1 -fill x -side left 
-    pack $base.fra28.but24 \
-        -in $base.fra28 -anchor center -expand 0 -fill none -padx 5 \
+    pack $base.fra23.fra24 \
+        -in $base.fra23 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra23.fra24.lab22 \
+        -in $base.fra23.fra24 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra23.fra24.ent23 \
+        -in $base.fra23.fra24 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra23.fra24.but24 \
+        -in $base.fra23.fra24 -anchor center -expand 0 -fill none -padx 5 \
         -side right 
-    pack $base.fra29 \
-        -in $base -anchor center -expand 0 -fill x -side top 
-    pack $base.fra29.lab34 \
-        -in $base.fra29 -anchor center -expand 0 -fill none -side left 
-    pack $base.fra29.ent35 \
-        -in $base.fra29 -anchor center -expand 1 -fill x -side left 
-    pack $base.fra29.but36 \
-        -in $base.fra29 -anchor center -expand 0 -fill none -padx 5 \
+    pack $base.fra23.fra25 \
+        -in $base.fra23 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra23.fra25.lab22 \
+        -in $base.fra23.fra25 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra23.fra25.ent23 \
+        -in $base.fra23.fra25 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra23.fra25.but24 \
+        -in $base.fra23.fra25 -anchor center -expand 0 -fill none -padx 5 \
+        -side right 
+    pack $base.fra23.fra26 \
+        -in $base.fra23 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra23.fra26.lab34 \
+        -in $base.fra23.fra26 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra23.fra26.ent35 \
+        -in $base.fra23.fra26 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra23.fra26.but36 \
+        -in $base.fra23.fra26 -anchor center -expand 0 -fill none -padx 5 \
         -side right 
     pack $base.fra30 \
         -in $base -anchor center -expand 1 -fill both -side top 
