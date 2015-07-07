@@ -369,15 +369,15 @@ while {![eof $fi]} {
  set l [gets $fi]
  if {[string length $l] > 0} {
  
-  set datos [_fprsplit $l "\t"]
+  set datos [split $l "\t"]
 
   set ne [lindex $datos 1]
   set c3 [lindex $datos 2]
   set c4 [lindex $datos 3]
   set c5 [lindex $datos 4]
-  set c7 [lindex $datos 6]
+  set c8 [lindex $datos 7]
 
-  set Exp($ne) [list $c3 $c4 $c5 $c7]
+  set Exp($ne) [list $c3 $c4 $c5 $c8]
  }
 }
 close $fi
