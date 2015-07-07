@@ -1,0 +1,426 @@
+103	ER0000000000	\N	\N	\N		0	\N	0	0
+104	ER0000000001	hsa	Embryonic stem cell	454 GS		1838	GEO:GSM541796	101090	0
+105	ER0000000002	hsa	Embryonic stem cell	454 GS		1838	GEO:GSM541797	18404	0
+106	ER0000000003	ath	Whole body	Illumina Genome Analyzer		1947	GEO:GSM253622	1385435	1683572
+107	ER0000000004	ath	Whole body	Illumina Genome Analyzer		1947	GEO:GSM253623	16750	136660
+237	ER0000000134	spu	Whole body	454		1856	\N	10318	18408
+108	ER0000000005	ath	Whole body	Illumina Genome Analyzer		1947	GEO:GSM253624	23882	711516
+109	ER0000000006	ath	Whole body	Illumina Genome Analyzer		1947	GEO:GSM253625	10766	309009
+236	ER0000000133	sko	Whole body	454		1856	\N	13385	18408
+110	ER0000000007	cre	Whole body	454 GS		0	GEO:GSM176482	2686	78330
+111	ER0000000008	osa	Whole body	\N		1881	GEO:GSM407071	16716	35506
+112	ER0000000009	osa	Whole body	\N		1881	GEO:GSM407072	21313	121195
+113	ER0000000010	dme	Head	Illumina Genome Analyzer		1946	GEO:GSM240749	594813	1107054
+114	ER0000000011	dme	S2 cell	Illumina Genome Analyzer		1946	GEO:GSM272651	206898	746042
+234	ER0000000131	bfl	Whole body	454		1856	\N	49782	51198
+235	ER0000000132	nve	Whole body	454		1856	\N	1116	9094
+115	ER0000000012	dme	S2 cell	Illumina Genome Analyzer		1946	GEO:GSM272652	539126	2560109
+116	ER0000000013	dme	Kc cell	Illumina Genome Analyzer		1946	GEO:GSM272653	485324	2294602
+117	ER0000000014	dme	Imaginal disc	Illumina Genome Analyzer		1946	GEO:GSM275691	149125	1365386
+118	ER0000000015	dme	Head	Illumina Genome Analyzer		1946	GEO:GSM286601	291702	621970
+119	ER0000000016	dme	Whole body	Illumina Genome Analyzer		1946	GEO:GSM286602	165608	980096
+120	ER0000000017	dme	Whole body	Illumina Genome Analyzer		1946	GEO:GSM286603	107230	975458
+121	ER0000000018	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286604	554104	4330365
+122	ER0000000019	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286605	496143	4559147
+123	ER0000000020	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286606	157742	2897036
+124	ER0000000021	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286607	414209	2495722
+125	ER0000000022	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286611	430039	2023634
+126	ER0000000023	dme	Embryo	Illumina Genome Analyzer		1946	GEO:GSM286613	252696	2572425
+127	ER0000000024	cel	Whole body	\N		1880	GEO:GSM378784	133641	181848
+128	ER0000000025	cbr	Whole body	\N		1880	GEO:GSM378785	13639	62700
+129	ER0000000026	crm	Whole body	\N		1880	GEO:GSM378786	8679	52999
+130	ER0000000027	ppc	Whole body	\N		1880	GEO:GSM378787	9622	44967
+131	ER0000000028	mmu	Ovary	Illumina Genome Analyzer		1638	GEO:GSM510432	1659	2367
+132	ER0000000029	mmu	Ovary	Illumina Genome Analyzer		1638	GEO:GSM510433	154172	222579
+133	ER0000000030	mmu	Ovary	Illumina Genome Analyzer		1638	GEO:GSM510434	118186	174853
+134	ER0000000031	mmu	Ovary	Illumina Genome Analyzer		1638	GEO:GSM510435	10675	15655
+135	ER0000000032	mmu	Testes	Illumina Genome Analyzer		1638	GEO:GSM510436	20014	178262
+136	ER0000000033	mmu	Testes	Illumina Genome Analyzer		1638	GEO:GSM510437	92765	885089
+137	ER0000000034	mmu	Testes	Illumina Genome Analyzer		1638	GEO:GSM510438	109295	1024299
+138	ER0000000035	mmu	Testes	Illumina Genome Analyzer		1638	GEO:GSM510439	13599	123377
+139	ER0000000036	mmu	Brain	Illumina Genome Analyzer		1638	GEO:GSM510440	268722	321151
+140	ER0000000037	mmu	Brain	Illumina Genome Analyzer		1638	GEO:GSM510441	1082917	1289601
+141	ER0000000038	mmu	Brain	Illumina Genome Analyzer		1638	GEO:GSM510442	1434544	1725165
+142	ER0000000039	mmu	Brain	Illumina Genome Analyzer		1638	GEO:GSM510443	183721	221848
+143	ER0000000040	mmu	Brain	Illumina Genome Analyzer		1638	GEO:GSM510444	5358720	6741446
+144	ER0000000041	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510445	32572	37320
+145	ER0000000042	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510446	267938	310078
+146	ER0000000043	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510447	279790	327267
+147	ER0000000044	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510448	49257	56222
+148	ER0000000045	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510449	863425	976734
+149	ER0000000046	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510450	1183158	1329729
+150	ER0000000047	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510451	1356713	1522730
+151	ER0000000048	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510452	1280179	1439151
+152	ER0000000049	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510453	1311793	1475831
+153	ER0000000050	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510454	1287394	1457627
+154	ER0000000051	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510455	1205382	1367378
+155	ER0000000052	mmu	Whole body	Illumina Genome Analyzer	Newborn	1638	GEO:GSM510456	4852440	5874082
+156	ER0000000053	mmu	Embryo	Illumina Genome Analyzer	Day: 12.5	1638	GEO:GSM510457	191533	243560
+157	ER0000000054	mmu	Embryo	Illumina Genome Analyzer	Day: 12.5	1638	GEO:GSM510458	1002368	1284910
+158	ER0000000055	mmu	Embryo	Illumina Genome Analyzer	Day: 12.5	1638	GEO:GSM510459	1216142	1573947
+159	ER0000000056	mmu	Embryo	Illumina Genome Analyzer	Day: 12.5	1638	GEO:GSM510460	152785	193350
+160	ER0000000057	mmu	Embryo	Illumina Genome Analyzer	Day: 9.5	1638	GEO:GSM510461	339815	467058
+161	ER0000000058	mmu	Embryo	Illumina Genome Analyzer	Day: 9.5	1638	GEO:GSM510462	1052082	1439418
+162	ER0000000059	mmu	Embryo	Illumina Genome Analyzer	Day: 9.5	1638	GEO:GSM510463	1188565	1663661
+163	ER0000000060	mmu	Embryo	Illumina Genome Analyzer	Day: 9.5	1638	GEO:GSM510464	97719	136649
+164	ER0000000061	mmu	Embryo	Illumina Genome Analyzer	Day: 7.5	1638	GEO:GSM510465	365413	551239
+165	ER0000000062	mmu	Embryo	Illumina Genome Analyzer	Day: 7.5	1638	GEO:GSM510466	962404	1416690
+166	ER0000000063	mmu	Embryo	Illumina Genome Analyzer	Day: 7.5	1638	GEO:GSM510467	1174357	1796819
+182	ER0000000079	dme	Whole body	Illumina Genome Analyzer	3rd instar larvae	0	GEO:GSM322208	241598	2191698
+183	ER0000000080	dme	Whole body	Illumina Genome Analyzer	2-4 day old pupae	0	GEO:GSM322219	400834	2113835
+184	ER0000000081	dme	Whole body	Illumina Genome Analyzer	3rd instar larvae	0	GEO:GSM322245	75827	2545238
+185	ER0000000082	dme	Whole body	Illumina Genome Analyzer	2-4 day old pupae	0	GEO:GSM322338	55119	2137829
+186	ER0000000083	dme	Head	Illumina Genome Analyzer	Age: Adult; Gender: Female	0	GEO:GSM322533	1050967	1859746
+187	ER0000000084	dme	Head	Illumina Genome Analyzer	Age: Adult; Gender: Male	0	GEO:GSM322543	2817232	4966701
+188	ER0000000085	dme	Whole body	Illumina Genome Analyzer	1st instar larvae	0	GEO:GSM360256	30393	4250962
+189	ER0000000086	dme	Whole body	Illumina Genome Analyzer	1st instar larvae	0	GEO:GSM360257	24038	4120045
+190	ER0000000087	dme	Whole body	Illumina Genome Analyzer	0-1 day old pupae	0	GEO:GSM360260	384404	4557365
+191	ER0000000088	dme	Whole body	Illumina Genome Analyzer	0-2 day old pupae	0	GEO:GSM360262	612946	4956438
+192	ER0000000089	dme	Embryo	Illumina Genome Analyzer	Age: 12-24 hours	0	GEO:GSM364902	108003	498818
+193	ER0000000090	dme	Whole body	Illumina Genome Analyzer	Age: 2-4 days	0	GEO:GSM280082	250155	936833
+194	ER0000000091	dme	Whole body	Illumina Genome Analyzer	Age: 2-4 days	0	GEO:GSM280083	275729	1042617
+195	ER0000000092	dme	Whole body	Illumina Genome Analyzer	Age: 2-4 days	0	GEO:GSM280084	204412	1946339
+196	ER0000000093	dme	Whole body	Illumina Genome Analyzer	Age: 2-4 days	0	GEO:GSM280085	346282	522848
+197	ER0000000094	dme	Whole body	Illumina Genome Analyzer	Age: 2-4 days	0	GEO:GSM280086	90398	454226
+198	ER0000000095	dme	S2 cell	Illumina Genome Analyzer		0	GEO:GSM280087	85693	916834
+199	ER0000000096	dme	S2 cell	Illumina Genome Analyzer		0	GEO:GSM280088	2059815	2094408
+202	ER0000000099	dme	Imaginal disc	Illumina Genome Analyzer	Imaginal disc/brain	0	GEO:GSM399105	200324	2314629
+203	ER0000000100	dme	Whole body	Illumina Genome Analyzer	Gender: Female	0	GEO:GSM399106	476694	3887243
+204	ER0000000101	dme	Whole body	Illumina Genome Analyzer	Gender: Male	0	GEO:GSM399107	968387	4299125
+205	ER0000000102	dme	S2 cell	Illumina Genome Analyzer		0	GEO:GSM371638	4584127	11068036
+206	ER0000000103	hsa	Melanoblast	Illumina Genome Analyzer II		1833	GEO:GSM458535	323187	5040792
+207	ER0000000104	hsa	Melanocyte	Illumina Genome Analyzer II		1833	GEO:GSM458536	89851	1322390
+208	ER0000000105	hsa		Illumina Genome Analyzer II	Cell line: Primary giant congental nevus	1833	GEO:GSM458537	253499	4197742
+209	ER0000000106	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary acral melanoma	1833	GEO:GSM458538	70060	1182526
+210	ER0000000107	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary mucosal melanoma	1833	GEO:GSM458539	90014	1014821
+211	ER0000000108	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma	1833	GEO:GSM458540	212551	3392396
+212	ER0000000109	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Primary uveal melanoma	1833	GEO:GSM458541	132072	1671960
+213	ER0000000110	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma	1833	GEO:GSM458542	191841	2110736
+214	ER0000000111	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma	1833	GEO:GSM458543	157701	2071721
+215	ER0000000112	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma	1833	GEO:GSM458544	185113	2089310
+216	ER0000000113	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma from a chronically sun-damaged body site	1833	GEO:GSM458545	153923	1966019
+217	ER0000000114	hsa	Melanoma	Illumina Genome Analyzer II	Cell line: Secondary cutaneous melanoma	1833	GEO:GSM458546	155133	2119480
+218	ER0000000115	dme	Head	\N	Age: Adult; Gender: Female & male	1630	GEO:GSM180328	96986	193679
+219	ER0000000116	dme	Whole body	\N	Age: Adult; Gender: Female & male	1630	GEO:GSM180329	27703	198653
+220	ER0000000117	dme	Embryo	\N	Very early embryo (0-1)	1630	GEO:GSM180330	14770	195285
+221	ER0000000118	dme	Embryo	\N	Early embryo (2-6)	1630	GEO:GSM180331	35054	279039
+222	ER0000000119	dme	Embryo	\N	Mid embryo (6-10)	1630	GEO:GSM180332	25401	105284
+223	ER0000000120	dme	Embryo	\N	Late embryo (12-24)	1630	GEO:GSM180333	30476	203377
+224	ER0000000121	dme	Whole body	\N	Larvae: 1st instar and 3rd instar	1630	GEO:GSM180334	13696	256706
+225	ER0000000122	dme	Imaginal disc	\N		1630	GEO:GSM180335	23220	258953
+226	ER0000000123	dme	Whole body	\N	Pupae: 0-1 day, 0-2 day, 2-4 day	1630	GEO:GSM180336	15140	197225
+227	ER0000000124	dme	S2 cell	\N	Tissue culture cells (S2 only)	1630	GEO:GSM180337	26630	186863
+228	ER0000000125	cte	Whole body	454		1856	\N	34508	38798
+229	ER0000000126	hma	Whole body	454		1856	\N	61	2449
+230	ER0000000127	dme	Ovary	Illumina Genome Analyzer	Ovary Somatic Sheet (OSS) cells 	0	GEO:GSM385744	1057131	6273526
+231	ER0000000128	dme	Ovary	Illumina Genome Analyzer	Ovary Somatic Sheet (OSS) cells 	0	GEO:GSM385748	2152570	12827335
+232	ER0000000129	dme	Ovary	Illumina Genome Analyzer	Ovary Somatic Sheet (OSS) cells 	0	GEO:GSM385821	2989825	17704017
+233	ER0000000130	dme	Ovary	Illumina Genome Analyzer	Ovary Somatic Sheet (OSS) cells 	0	GEO:GSM385822	847361	5413331
+238	ER0000000135	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532871	6734	0
+239	ER0000000136	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532872	2931	0
+240	ER0000000137	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532873	220	0
+241	ER0000000138	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532874	5861	0
+242	ER0000000139	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532875	1223	0
+243	ER0000000140	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532876	8335	0
+244	ER0000000141	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532877	3521	0
+245	ER0000000142	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532878	4357	0
+246	ER0000000143	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532879	974	0
+247	ER0000000144	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532880	1270	0
+248	ER0000000145	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532881	94	0
+249	ER0000000146	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532882	88	0
+250	ER0000000147	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532883	7754	0
+251	ER0000000148	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532884	1947	0
+252	ER0000000149	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532885	4430	0
+253	ER0000000150	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532886	6687	0
+254	ER0000000151	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532887	1899	0
+255	ER0000000152	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532888	282	0
+256	ER0000000153	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532889	493	0
+257	ER0000000154	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532890	616	0
+258	ER0000000155	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532891	21583	0
+259	ER0000000156	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532892	32999	0
+260	ER0000000157	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532893	23593	0
+261	ER0000000158	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532894	5634	0
+262	ER0000000159	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532895	102205	0
+264	ER0000000161	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532897	68577	0
+265	ER0000000162	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532898	256	0
+266	ER0000000163	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532899	59235	0
+267	ER0000000164	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532900	44724	0
+268	ER0000000165	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532901	48739	0
+269	ER0000000166	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532902	1627	0
+270	ER0000000167	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532903	57818	0
+271	ER0000000168	hsa	Adenosquamous cell	Illumina Genome Analyzer		1922	GEO:GSM532904	6759	0
+273	ER0000000170	hsa	Adenosquamous cell	Illumina Genome Analyzer		1922	GEO:GSM532906	1377	0
+274	ER0000000171	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532907	41719	0
+277	ER0000000174	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532910	27023	0
+278	ER0000000175	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532911	2691	0
+279	ER0000000176	hsa	Adenosquamous cell	Illumina Genome Analyzer		1922	GEO:GSM532912	11572	0
+280	ER0000000177	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532913	103928	0
+281	ER0000000178	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532914	29776	0
+282	ER0000000179	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532915	23256	0
+283	ER0000000180	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532916	25234	0
+284	ER0000000181	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532917	22429	0
+285	ER0000000182	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532918	2822	0
+286	ER0000000183	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532919	15417	0
+287	ER0000000184	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532920	54953	0
+288	ER0000000185	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532921	155876	0
+289	ER0000000186	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532922	56026	0
+290	ER0000000187	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532923	58461	0
+291	ER0000000188	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532924	17841	0
+276	ER0000000173	hsa	Uterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532909	80508	0
+293	ER0000000190	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532926	7929	0
+295	ER0000000192	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532928	42	0
+296	ER0000000193	hsa	Sterine cervix	Illumina Genome Analyzer		1922	GEO:GSM532929	508	0
+297	ER0000000194	hsa	Squamous cell	Illumina Genome Analyzer		1922	GEO:GSM532930	174	0
+302	ER0000000199	tca	Adult	AB SOLiD System	Genotype: Wild type; Gender: Male and female	1955	GEO:GSM639446	3876943	12170245
+303	ER0000000200	tca	Embryo	AB SOLiD System	Genotype: Wild type; Age: 0-5 days; Gender: Male and female	1955	GEO:GSM639447	117634	2192856
+304	ER0000000201	osa	Whole body	Illumina Genome Analyzer	Strain: Indica 93-11; Age: 12-day-old; Stress: Control	1969	GEO:GSM571077	1061189	40053536
+305	ER0000000202	osa	Whole body	Illumina Genome Analyzer	Strain: Indica 93-11; Stress: H2O2	1969	GEO:GSM571078	1040465	41427792
+306	ER0000000203	cel	Adult	454 GS	Strain: N2 wild-type; Age: Day 0	1974	GEO:GSM604032	53489	118810
+307	ER0000000204	cel	Adult	454 GS	Strain: N2 wild-type; Age: Day 10	1974	GEO:GSM604033	87393	221403
+308	ER0000000205	cel	Adult	454 GS	Strain: daf-2(e1379) mutant; Age: Day 0	1974	GEO:GSM604034	105196	224376
+309	ER0000000206	cel	Adult	454 GS	Strain: daf-2(e1379) mutant; Age: Day 10	1974	GEO:GSM604035	156379	325627
+310	ER0000000207	aly	Rosette leaf	Illumina Genome Analyzer	Age: 8 weeks	1925	GEO:GSM451894	24026	583894
+311	ER0000000208	ath	Flower	\N		1650	GEO:GSM118372	20830	205649
+312	ER0000000209	ath	Rosette leaf	\N		1650	GEO:GSM118373	46914	186899
+313	ER0000000210	ath	Seedling	\N		1650	GEO:GSM118374	44158	188954
+314	ER0000000211	ath	Silique	\N		1650	GEO:GSM118375	41088	305764
+315	ER0000000212	cel	Whole body	454 GS	Mixed-stage	1603	GEO:GSM139137	359814	850869
+316	ER0000000213	ppt	Whole body	\N	7 day wild-type protonemata	1747	GEO:GSM115095	20573	140034
+317	ER0000000214	ppt	Gametophore	\N	14 day old wild-type -- Protonemata and young Gametophores	1747	GEO:GSM115096	82718	200545
+318	ER0000000215	ppt	Gametophore	\N	~60 day old wild-type mature gametophores and sporophytes	1747	GEO:GSM115097	103126	220521
+319	ER0000000216	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539835	4565912	4729724
+320	ER0000000217	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539836	4279801	4523242
+321	ER0000000218	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539837	3918831	4198250
+322	ER0000000219	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539838	3181850	3400739
+323	ER0000000220	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539839	4701435	5121249
+324	ER0000000221	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: CD43 negative magnetic beads selection	0	GEO:GSM539840	3184948	4037235
+325	ER0000000222	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: CD43 negative magnetic beads selection	0	GEO:GSM539841	2620000	3845686
+326	ER0000000223	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: CD43 negative magnetic beads selection	0	GEO:GSM539842	2431889	3455384
+327	ER0000000224	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: CD43 negative magnetic beads selection	0	GEO:GSM539843	2564122	2932598
+328	ER0000000225	mmu	Peritoneal lavage	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539844	3993755	4151625
+329	ER0000000226	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539845	2365408	2483782
+330	ER0000000227	mmu	Lymph nodes	Illumina Genome Analyzer II	Strain: C57BL/6J, Gender: Male, Isolation: Fluorescence activated cell sorting	0	GEO:GSM539846	2324125	3380600
+331	ER0000000228	mmu	Lymph nodes	Illumina Genome Analyzer II	Strain: IL-6 transgenic; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539847	1337203	1588997
+332	ER0000000229	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539848	3559357	3813440
+333	ER0000000230	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539849	4500017	4666444
+334	ER0000000231	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539850	5805416	6208626
+335	ER0000000232	mmu	Peritoneal lavage	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539851	4186023	4509737
+336	ER0000000233	mmu	Peritoneal lavage	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539852	799359	869189
+337	ER0000000234	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539853	2956807	3028043
+338	ER0000000235	mmu	Bone marrow	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539854	3098825	3158808
+339	ER0000000236	mmu	Spleen	Illumina Genome Analyzer II	Strain: RAG-/- ; Gender: Male	0	GEO:GSM539855	2705614	3583330
+340	ER0000000237	mmu	Thymus	Illumina Genome Analyzer II		0	GEO:GSM539856	4111296	4331134
+341	ER0000000238	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539857	4493660	4714154
+342	ER0000000239	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539858	5056758	5355570
+343	ER0000000240	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539859	3793169	4636246
+344	ER0000000241	mmu	Lymph nodes/spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539860	3579645	4441515
+345	ER0000000242	mmu	Lymph nodes/spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539861	4582625	5078533
+346	ER0000000243	mmu	Lymph nodes/spleen	Illumina Genome Analyzer II	Strain: C57BL/6J, Gender: Male	0	GEO:GSM539862	4882303	5261144
+347	ER0000000244	mmu	Spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539863	11644732	12759188
+348	ER0000000245	mmu	Lymph nodes/spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539864	5118507	5460792
+349	ER0000000246	mmu	Lymph nodes/spleen	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male; Isolation: Fluorescence activated cell sorting	0	GEO:GSM539865	3739614	4022856
+350	ER0000000247	mmu		Illumina Genome Analyzer II	Strain: C57BL/6-129	0	GEO:GSM539866	1645209	2036287
+351	ER0000000248	mmu		Illumina Genome Analyzer II	Strain: C57BL/6J; Developmental stage: E13.5	0	GEO:GSM539867	3304911	3373047
+352	ER0000000249	mmu	Heart	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539868	9448988	5186109
+353	ER0000000250	mmu	Brain	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male 	0	GEO:GSM539869	5619244	5644426
+354	ER0000000251	mmu	Lung	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male 	0	GEO:GSM539870	5878808	5757917
+355	ER0000000252	mmu	Liver	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539871	5183766	5221430
+356	ER0000000253	mmu	Kidney	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539872	5518819	5590796
+357	ER0000000254	mmu	Pancreas	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539873	3208690	3507488
+358	ER0000000255	mmu	Skin	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539874	6029403	5095196
+359	ER0000000256	mmu	Skeletal muscle	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539875	11172135	6497511
+360	ER0000000257	mmu	Salivary glands	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539876	4886482	4990847
+361	ER0000000258	mmu	Testes	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Male	0	GEO:GSM539877	456703	2548986
+362	ER0000000259	mmu	Ovary	Illumina Genome Analyzer II	Strain: C57BL/6J; Gender: Female	0	GEO:GSM539878	3773344	3865922
+363	ER0000000260	mmu	Spleen	Illumina Genome Analyzer II	Strain: BclXL transgenic BalbC; Gender: Male	0	GEO:GSM539879	2120574	2498246
+364	ER0000000261	mmu	Lymph nodes	Illumina Genome Analyzer II	Strain: BclXL transgenic BalbC; Gender: Male	0	GEO:GSM539880	4016341	4493989
+365	ER0000000262	hsa		454 GS 20	Antibody: anti-Ago1 4B8	0	GEO:GSM337570	13511	20447
+366	ER0000000263	hsa		454 GS 20	Antibody: anti-Ago2 11A9	0	GEO:GSM337571	12064	42603
+367	ER0000000264	hsa	Undifferentiated NPC	454 GS 20		1627	GEO:GSM368181	14339	25210
+368	ER0000000265	hsa	Clinically negative of NPC	454 GS 20		1627	GEO:GSM368182	1075	16248
+369	ER0000000266	hsa	Undifferentiated NPC	454 GS 20		1627	GEO:GSM368183	4416	22634
+370	ER0000000267	hsa	Clinically negative of NPC	454 GS 20		1627	GEO:GSM368184	1199	19051
+371	ER0000000268	bmo	Whole body	Illumina Genome Analyzer II	5th-instar day-3 larvae	1775	GEO:GSM449725	1466717	2505600
+372	ER0000000269	bmo	Anterior silk glands	Illumina Genome Analyzer II	5th-instar day-3 larvae	1775	GEO:GSM449726	1427727	11829424
+373	ER0000000270	bmo	Posterior silk glands	Illumina Genome Analyzer II	5th-instar day-3 larvae	1775	GEO:GSM449727	387054	10728452
+374	ER0000000271	ame	Whole body	ABI SOLiD		1950	SRA:SRA012371	1103091	19913118
+375	ER0000000272	cqu	Whole body	Illumina		1913	\N	536494	1790474
+376	ER0000000273	osa	Callus culture	Illumina	Undifferentiated	0	GEO:GSM686039	2719076	12806714
+379	ER0000000276	osa	Callus	Illumina Genome Analyzer	Cultivar: Japonica; Variety: Nipponbare; Developmental stage: Differentiated	1986	GEO:GSM686040	2165056	13270974
+380	ER0000000277	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Centroblast; Gender: Female; Age: 3 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569185	517896	5714001
+381	ER0000000278	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Centrocyte; Gender: Female; Age: 3 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569186	535300	5425266
+382	ER0000000279	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Pre-germinal center B cell; Gender: Female; Age: 3 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569187	546322	6730974
+383	ER0000000280	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Plasma cell; Gender: Female; Age: 3 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569188	565159	5653883
+384	ER0000000281	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Naive B cell; Gender: Female; Age: 5 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569189	407305	5168130
+385	ER0000000282	hsa	Tonsil	Illumina Genome Analyzer II	Cell type: Memory B cell; Gender: Female; Age: 5 years; Isolation: Fluorescence activated cell sorting	2082	GEO:GSM569190	450909	3524076
+388	ER0000000285	zma	Whole body	Illumina Genome Analyzer II	Variety: B73 (wild type); Age at harvest: 6-weeks-old seedlings	0	GEO:GSM433620	325247	3796401
+389	ER0000000286	zma	Whole body	Illumina Genome Analyzer II	Variety: B73 (wild type); Age at harvest: 10- and 11-week old plants; Developmental stage: Post-meiotic stage; Length: 3-5 cm long with silks about 1-4 cm long	0	GEO:GSM433621	76426	4644824
+390	ER0000000287	zma	Whole body	Illumina Genome Analyzer II	Variety: B73 (wild type); Age at harvest: 8-week old plants; Developmental stage: Pre-meiotic stage; Length: Ranged in length between 2-4 cm long	0	GEO:GSM433622	106452	4207594
+403	ER0000000300	cpa	Leaf	Illumina Genome Analyzer II	Age: 1-2 weeks; Variety: SunUp	0	GEO:GSM712525	958	4664778
+404	ER0000000301	cpa	Flower	Illumina Genome Analyzer II	Gender: Female; Age: 1-3 weeks; Variety: SunUp	0	GEO:GSM712526	1055	4657830
+405	ER0000000302	cpa	Leaf	Illumina Genome Analyzer II	Gender: Male; Age: 2-3 weeks; Variety: AU9; Treatment: Infected with PRSV	0	GEO:GSM712527	773	4505265
+406	ER0000000303	csi	Leaf	Illumina Genome Analyzer II	Developmental stage: Young fully expanded	0	GEO:GSM712528	341517	3198490
+407	ER0000000304	csi	Flower	Illumina Genome Analyzer II	Developmental stage: Fully open	0	GEO:GSM712529	224893	2770870
+408	ER0000000305	csi	Fruit	Illumina Genome Analyzer II	Developmental stage: Mature	0	GEO:GSM712530	191828	2409983
+418	ER0000000315	gar	Leaf	Illumina Genome Analyzer II	Age: Newest; From: Top of plant	0	GEO:GSM717570	3511	6719416
+419	ER0000000316	gar	Flower	Illumina Genome Analyzer II	Age: -3 to 0 dpa	0	GEO:GSM717571	950	6889193
+420	ER0000000317	gar	Fiber	Illumina Genome Analyzer II	Age: 8-11 dpa	0	GEO:GSM717572	732	6954269
+421	ER0000000318	hvu	Leaf	Illumina Genome Analyzer II	Age: 7 days	0	GEO:GSM717573	41345	2899472
+422	ER0000000319	hvu	Inflorescence	Illumina Genome Analyzer II	Age: pre-anthesis, green anthers but not dehisced	0	GEO:GSM717574	167140	3345383
+423	ER0000000320	hvu	Leaf	Illumina Genome Analyzer II	Infection: Blumeria; Age: 7 days	0	GEO:GSM717575	766774	3251315
+433	ER0000000330	nta	Leaf	Illumina Genome Analyzer II	Age: 50 days	0	GEO:GSM717860	226595	2659037
+434	ER0000000331	nta	Flower	Illumina Genome Analyzer II	Age: 72 days	0	GEO:GSM717861	188460	4293732
+435	ER0000000332	nta	Pod	Illumina Genome Analyzer II	Age: 72 days	0	GEO:GSM717862	131566	1769844
+445	ER0000000342	pab	Needle	Illumina Genome Analyzer II		0	GEO:GSM717872	200081	3191259
+446	ER0000000343	pab	Cone	Illumina Genome Analyzer II	Gender: Female; Age: Immature	0	GEO:GSM717873	190505	3893948
+447	ER0000000344	pab	Bud	Illumina Genome Analyzer II	Lateral meristem	0	GEO:GSM717874	270022	3412170
+448	ER0000000345	ptc	Leaf	Illumina Genome Analyzer II		0	GEO:GSM717875	454456	4472810
+449	ER0000000346	ptc	Xylem	Illumina Genome Analyzer II		0	GEO:GSM717876	195463	4558621
+450	ER0000000347	ptc	Xylem	Illumina Genome Analyzer II	Treatment: Mechanically treated	0	GEO:GSM717877	174592	3972825
+451	ER0000000348	cre	Whole body	Illumina Genome Analyzer II	Growth protocol: Culture; Stress: Control	0	GEO:GSM803103	1812557	13309224
+452	ER0000000349	cre	Whole body	Illumina Genome Analyzer II	Growth protocol: Culture; Stress: Phosphate starvation	0	GEO:GSM803104	1739038	13963549
+453	ER0000000350	cre	Whole body	Illumina Genome Analyzer II	Growth protocol: Culture; Stress: Sulphate starvation	0	GEO:GSM803105	1115589	14802620
+454	ER0000000351	sbi	Leaf	Illumina Genome Analyzer II	Age: 3-week-old seedlings; Genotype/variation: BTx623	0	GEO:GSM803128	674988	5979968
+455	ER0000000352	sbi	Flower	Illumina Genome Analyzer II	Age: ~9-week old plants; Genotype/variation: BTx623	0	GEO:GSM803129	255065	4626536
+456	ER0000000353	sbi	Panicle	Illumina Genome Analyzer II	Genotype/variation: BTx623	0	GEO:GSM803130	570539	4092871
+463	ER0000000360	sly	Leaf	Illumina Genome Analyzer II	Cultivar: cv. Heinz 1706	0	GEO:GSM803579	591139	4763700
+464	ER0000000361	sly	Flower	Illumina Genome Analyzer II	Cultivar: cv. Heinz 170; Developmental stage: Pre-anthesis	0	GEO:GSM803580	321740	5063658
+465	ER0000000362	sly	Fruit	Illumina Genome Analyzer II	Cultivar: cv. Heinz 1706; Developmental stage: Breaker stage	0	GEO:GSM803581	339767	5044377
+466	ER0000000363	stu	Leaf	Illumina Genome Analyzer II	Cultivar: Kennebec; Time: 72 days	0	GEO:GSM803582	24731	4186680
+467	ER0000000364	stu	Flower	Illumina Genome Analyzer II	Cultivar: Kennebec, Katahdin, Pentland Ivory; Time: 72 days	0	GEO:GSM803583	23170	4591676
+468	ER0000000365	stu	Stolon	Illumina Genome Analyzer II	Cultivar: Defender; Time: 72 days	0	GEO:GSM803584	32017	4225856
+469	ER0000000366	tae	Leaf	Illumina Genome Analyzer II	Cultivar: Chinese Spring; Tissue: 7-days old	0	GEO:GSM803792	847104	3570128
+470	ER0000000367	tae	Spikelet	Illumina Genome Analyzer II	Infection: Control; Harvest time: 24 hours after water inoculation	0	GEO:GSM803793	221349	2916954
+471	ER0000000368	tae	Spikelet	Illumina Genome Analyzer II	Infection: Fusarium; Harvest time: 24 hours after Fusarium inoculation	0	GEO:GSM803794	77935	2968382
+475	ER0000000372	vvi	Leaf	Illumina Genome Analyzer II	Cultivar: Merlot	0	GEO:GSM803800	217783	3810621
+476	ER0000000373	vvi	Flower	Illumina Genome Analyzer II	A mixture of open flowers and flowers still encapsulated in the caliptra	0	GEO:GSM803801	124762	2208759
+477	ER0000000374	vvi	Berry	Illumina Genome Analyzer II		0	GEO:GSM803802	120245	2258150
+481	ER0000000378	bta	MDBK	Illumina Genome Analyzer		1767	GEO:GSM387590	88671	362329
+482	ER0000000379	bta	MDBK	Illumina Genome Analyzer		1767	GEO:GSM387591	91796	372788
+483	ER0000000380	bta	MDBK	Illumina Genome Analyzer		1767	GEO:GSM387592	78333	310847
+499	ER0000000386	dre	Embryo	Illumina Genome Analyzer II	Strain: AB*WT; Developmental stage: 1dpf	0	GEO:GSM686385	2964118	0
+498	ER0000000385	dre	Embryo	Illumina Genome Analyzer II	Strain: AB*WT; Developmental stage: Shield	0	GEO:GSM686384	705939	0
+497	ER0000000384	dre	Embryo	Illumina Genome Analyzer II	Strain: AB*WT; Developmental stage: Sphere 	0	GEO:GSM686383	258035	0
+496	ER0000000383	dre	Embryo	Illumina Genome Analyzer II	Strain: AB*WT; Developmental stage: Sphere	0	GEO:GSM686382	9435196	0
+495	ER0000000382	dre	Embryo	Illumina Genome Analyzer II	Strain: AB* WT; Developmental stage: 256-cell	0	GEO:GSM686381	306586	0
+501	ER0000000387	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: Two to four cell embryo; Strain: TX189	0	GEO:GSM427297	314017	1783841
+502	ER0000000388	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: One cell embryo; Strain: TX189	0	GEO:GSM427301	343964	3526302
+503	ER0000000389	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: Post-gastrulation embryo; Strain: TX189	0	GEO:GSM427332	3163298	11846908
+504	ER0000000390	cel	Embryo	Illumina Genome Analyzer II	Strain: TX189	0	GEO:GSM427344	3739553	5881461
+505	ER0000000391	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: One-cell embryo; Strain: TX189	0	GEO:GSM427345	368512	3010279
+506	ER0000000392	cel	Embryo	Illumina Genome Analyzer II	Mixed embryos; Strain: TX189	0	GEO:GSM427346	1334524	2208127
+507	ER0000000393	cel	Whole body	Illumina Genome Analyzer	Strain: N2; Developmental stage: L4	0	GEO:GSM916519	207909	1083715
+516	ER0000000402	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Untreated for 0 hrs	0	GEO:GSM870220	18835135	32670135
+517	ER0000000403	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Untreated for 6 hrs	0	GEO:GSM870221	19687792	40633779
+518	ER0000000404	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Heat shock at 32°C for 6 hrs	0	GEO:GSM870222	13375138	34828841
+519	ER0000000405	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Juglone (oxidative stress) 750 μM for 6 hrs	0	GEO:GSM870223	18717249	36767682
+520	ER0000000406	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: 0.01% oxygen (hypoxia) for 6 hrs	0	GEO:GSM870224	21443425	42246497
+521	ER0000000407	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Complete food deprivation for 12 hrs	0	GEO:GSM870225	22091140	33168470
+522	ER0000000408	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Untreated for 12 hours	0	GEO:GSM870226	21738756	28950191
+523	ER0000000409	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Recovery (23°C for 6 hrs) from heat shock treatment	0	GEO:GSM870227	20811478	34844315
+524	ER0000000410	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Serum starvation; Cell cycle phase: G0; Cell type: Fibroblast	0	GEO:GSM774074	0	0
+525	ER0000000411	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Serum starvation; Cell cycle phase: G1; Cell type: Fibroblast	0	GEO:GSM774075	0	0
+526	ER0000000412	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Serum starvation; Cell cycle phase: S; Cell type: Fibroblast	0	GEO:GSM774076	0	0
+527	ER0000000413	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Serum starvation; Cell cycle phase: G2/M; Cell type: Fibroblast	0	GEO:GSM774077	0	0
+528	ER0000000414	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Serum starvation; Cell cycle phase: G1; Cell type: Fibroblast	0	GEO:GSM774078	0	0
+529	ER0000000415	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Contact inhibition; Cell cycle phase: Asynchronous; Cell type: Fibroblast	0	GEO:GSM774079	387869	701694
+530	ER0000000416	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Contact inhibition; Cell cycle phase: G0; Cell type: Fibroblast	0	GEO:GSM774080	535403	764715
+531	ER0000000417	mmu	NIH-3T3 cell	Illumina Genome Analyzer II	Cell cycle arrest: Contact inhibition; Cell cycle phase: G0; Cell type: Fibroblast	0	GEO:GSM774081	550722	803722
+532	ER0000000418	osa	Seedling	Illumina Genome Analyzer	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816687	775615	0
+533	ER0000000419	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816688	36678	0
+534	ER0000000420	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816689	299961	0
+535	ER0000000421	osa	Seedling	Illumina Genome Analyzer	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816690	579615	0
+536	ER0000000422	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816691	594497	0
+537	ER0000000423	osa	Seedling	Illumina Genome Analyzer	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816692	570568	0
+538	ER0000000424	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816693	774438	0
+539	ER0000000425	osa	Seedling	Illumina Genome Analyzer	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816694	654169	0
+540	ER0000000426	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816695	597624	0
+541	ER0000000427	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816696	24685	0
+542	ER0000000428	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816697	127227	0
+543	ER0000000429	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816698	50437	0
+544	ER0000000430	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816699	68882	0
+545	ER0000000431	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816700	16532	0
+546	ER0000000432	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816701	139753	0
+547	ER0000000433	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816702	8197	0
+548	ER0000000434	osa	Seedling	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816703	100081	0
+549	ER0000000435	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816704	42480	0
+550	ER0000000436	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816705	2638370	0
+551	ER0000000437	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816706	111370	0
+552	ER0000000438	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816707	3251306	0
+553	ER0000000439	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816708	110035	0
+554	ER0000000440	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816709	2541348	0
+555	ER0000000441	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816710	61181	0
+556	ER0000000442	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816711	2263699	0
+557	ER0000000443	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816712	87370	0
+558	ER0000000444	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816713	2730130	0
+559	ER0000000445	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816714	49904	0
+560	ER0000000446	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816715	1456422	0
+561	ER0000000447	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816716	41854	0
+562	ER0000000448	osa	Root	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816717	634430	0
+563	ER0000000449	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816718	80556	0
+564	ER0000000450	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816719	1006892	0
+565	ER0000000451	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816720	140543	0
+566	ER0000000452	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816721	1276308	0
+567	ER0000000453	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816722	69214	0
+568	ER0000000454	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816723	640679	0
+569	ER0000000455	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816724	197502	0
+570	ER0000000456	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816725	1731233	0
+571	ER0000000457	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816726	149200	0
+572	ER0000000458	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816727	1829152	0
+573	ER0000000459	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816728	141699	0
+574	ER0000000460	osa	Shoot	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816729	1308493	0
+575	ER0000000461	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816730	48828	0
+576	ER0000000462	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816731	353684	0
+577	ER0000000463	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816732	442609	0
+578	ER0000000464	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816733	63614	0
+579	ER0000000465	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816734	387038	0
+580	ER0000000466	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816735	1092612	0
+581	ER0000000467	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816736	117700	0
+582	ER0000000468	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816737	821327	0
+583	ER0000000469	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816738	781716	0
+584	ER0000000470	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816739	82079	0
+585	ER0000000471	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816740	454615	0
+586	ER0000000472	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816741	57470	0
+587	ER0000000473	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816742	29787	0
+588	ER0000000474	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816743	11639	0
+589	ER0000000475	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816744	17407	0
+590	ER0000000476	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816745	10630	0
+591	ER0000000477	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816746	122134	0
+592	ER0000000478	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816747	14505	0
+593	ER0000000479	osa	Panicle	Illumina Genome Analyzer II	Cultivar: Oryza sativa L, ssp. japonica cv. Nipponbare	2037	GEO:GSM816748	128843	0
+594	ER0000000480	hsa	Frontal Cortex	Illumina Genome Analyzer IIx	Age: 63 years; Gender: Male	2313	GEO:GSM995300	4501790	12514755
+595	ER0000000481	hsa	Cerebellum	Illumina Genome Analyzer IIx	Age: 68 years; Gender: Male	2313	GEO:GSM995301	5851697	14209176
+596	ER0000000482	hsa	Heart	Illumina Genome Analyzer IIx	Age: 29 years; Gender: Male	2313	GEO:GSM995302	10236807	21884679
+597	ER0000000483	hsa	Kidney	Illumina Genome Analyzer IIx	Age: 26 years; Gender: Male	2313	GEO:GSM995303	4992450	19052534
+598	ER0000000484	hsa	Testis	Illumina Genome Analyzer IIx	Age: 51 years; Gender: Male	2313	GEO:GSM995304	1336980	6447214
+599	ER0000000485	mml	Frontal Cortex	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Male	2313	GEO:GSM995305	10375098	23929082
+600	ER0000000486	mml	Cerebellum	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Male	2313	GEO:GSM995306	10860411	23097240
+601	ER0000000487	mml	Heart	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Male	2313	GEO:GSM995307	11137784	32358295
+602	ER0000000488	mml	Kidney	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Male	2313	GEO:GSM995308	6089481	17934112
+603	ER0000000489	mml	Testis	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Male	2313	GEO:GSM995309	782920	5790145
+604	ER0000000490	mmu	Brain	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995310	11100117	21874100
+605	ER0000000491	mmu	Cerebellum	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995311	7228777	18373847
+606	ER0000000492	mmu	Heart	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995312	25664440	31737897
+607	ER0000000493	mmu	Kidney	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995313	7297055	19959946
+608	ER0000000494	mmu	Testis	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995314	589560	4333329
+609	ER0000000495	mdo	Brain	Illumina Genome Analyzer IIx	Age: 6 months; Gender: Male	2313	GEO:GSM995315	5341666	14172509
+610	ER0000000496	mdo	Cerebellum	Illumina Genome Analyzer IIx	Age: 19.5 months; Gender: Male	2313	GEO:GSM995316	3633910	13592129
+611	ER0000000497	mdo	Heart	Illumina Genome Analyzer IIx	Age: 6 months; Gender: Male	2313	GEO:GSM995317	8051258	18873838
+612	ER0000000498	mdo	Kidney	Illumina Genome Analyzer IIx	Age: 6 months; Gender: Male	2313	GEO:GSM995318	3962511	14444598
+613	ER0000000499	mdo	Testis	Illumina Genome Analyzer IIx	Age: 8 months; Gender: Male	2313	GEO:GSM995319	1085420	4884657
+614	ER0000000500	oan	Brain	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995320	4130973	11289364
+615	ER0000000501	oan	Cerebellum	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995321	9146942	32358295
+616	ER0000000502	oan	Heart	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995322	807257	32358295
+617	ER0000000503	oan	Kidney	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995323	9146942	32358295
+618	ER0000000504	oan	Testis	Illumina Genome Analyzer IIx	Age: Adult; Gender: Male	2313	GEO:GSM995324	0	0
+619	ER0000000505	gga	Brain	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995325	44682492084	32358295
+620	ER0000000506	gga	Cerebellum	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995326	10262563	19823087
+621	ER0000000507	gga	Heart	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995327	11372349	21111697
+622	ER0000000508	gga	Kidney	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995328	6510195	17133993
+623	ER0000000509	gga	Testis	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995329	284485	15697230
+624	ER0000000510	mmu	Sertoli cells	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995330	6522049	20677390
+625	ER0000000511	mmu	Spermatids	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995331	250901	4261846
+626	ER0000000512	mmu	Spermatocytes	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995332	219558	4711112
+627	ER0000000513	mml	Frontal Cortex	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Female	2313	GEO:GSM995333	8175430	20151152
+628	ER0000000514	mml	Kidney	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Female	2313	GEO:GSM995334	5835713	21567136
+629	ER0000000515	mml	Testis	Illumina Genome Analyzer IIx	Age: 9 years; Gender: Male	2313	GEO:GSM995335	330143	2752183

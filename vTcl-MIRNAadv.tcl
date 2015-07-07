@@ -460,6 +460,11 @@ set fnx [join [lreplace [split $fnx "."] end end "fax"] "."]
 
 set fnx [join [list $gVar(fastaPATH) ${fnx}] "/"]
 
+if {[file isfile $fnx] == 0} {
+ set gVar(msg) "ERROR: No FASTAx file for that specimen found..."
+ return -1
+}
+
 set fi [open $fnx r]
 
 set i 0
@@ -467,7 +472,7 @@ while {![eof $fi]} {
  set l [gets $fi]
  if {[string length $l] > 0} {
  
-  set datos [_fprsplit $l " \t"]
+  set datos [_fprsplit $l "\t"]
 
   set name [lindex $datos 0]
   set exp  [lindex $datos 1]
@@ -483,10 +488,12 @@ while {![eof $fi]} {
    }
    
    if {$found == 0} {
-    lappend gVar(Exp,$name) [list $exp $cnts]
+    #lappend gVar(Exp,$name) [list $exp $cnts]
+    lappend gVar(Exp,$name) [lrange $datos 1 end]
    }
   } else {
-   lappend gVar(Exp,$name) [list $exp $cnts]
+   #lappend gVar(Exp,$name) [list $exp $cnts]
+   lappend gVar(Exp,$name) [lrange $datos 1 end]
   }
  }
 
@@ -592,8 +599,8 @@ $w configure -scrollregion [$w bbox all]
 
 proc {drawTableExp} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {20 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
-$table headers {experiment counts}
+set table [::DrawTable::drawntable $w -columnwidths {20 8 7 15 30 15} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+$table headers {experiment counts specie tissue technology link}
 $table hline
 
 
@@ -892,7 +899,7 @@ proc vTclWindow.top22 {base {container 0}} {
     vTcl:toplevel $base -class Toplevel
     wm withdraw $base
     wm focusmodel $base passive
-    wm geometry $base 382x405+525+260; update
+    wm geometry $base 678x439+525+260; update
     wm maxsize $base 2945 1020
     wm minsize $base 1 1
     wm overrideredirect $base 0
