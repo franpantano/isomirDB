@@ -816,8 +816,8 @@ if {[info script] == "vTcl-MIRNAadv.tcl"} {
 }
 
 
-set gVar(fastaPATH)  $gVar(sysPath)
-set gVar(resultPATH) $gVar(sysPath)
+set gVar(fastaPATH)  "$gVar(sysPath)/data/mirna_read_count_by_experiment"
+set gVar(resultPATH) "$gVar(sysPath)/results"
 
 set gVar(search,0) cel
 set gVar(search,1) miR-66

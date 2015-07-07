@@ -535,10 +535,17 @@ wm protocol .top17 WM_DELETE_WINDOW {exit}
 proc init {argc argv} {
 global GVar
 
-set GVar(file1) "/file1"
-set GVar(file2) "/file2"
-set GVar(file4) "/file4"
-set GVar(file5) "/file5"
+if {[info script] == "vTcl-FASTAdiv.tcl"} {
+ set gVar(sysPath) [pwd]
+} else {
+ set gVar(sysPath) [join [lreplace [split [info script] "/\\"] end end] "/"]
+}
+
+
+set GVar(file1) "$gVar(sysPath)/data/mirna_read_count_by_experiment.txt"
+set GVar(file2) "$gVar(sysPath)/data/mirna.txt"
+set GVar(file4) "$gVar(sysPath)/data/mirna_read_count_by_experiment/mirna_read_count_by_experiment.fa"
+set GVar(file5) "$gVar(sysPath)/data/experiment.txt"
 
 set GVar(FileName) "noName"
 
