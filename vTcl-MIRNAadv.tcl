@@ -311,6 +311,9 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra36.but22 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
+    namespace eval ::widgets::.top23.fra36.but25 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
     namespace eval ::widgets::.top23.cpd23 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
@@ -325,6 +328,33 @@ proc vTcl:project:info {} {
     }
     namespace eval ::widgets::.top23.lab24 {
         array set save {-anchor 1 -text 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top22 {
+        array set save {}
+    }
+    namespace eval ::widgets::.top22.fra23 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra23.lab25 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra23.ent26 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top22.fra23.but27 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top22.fra24 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top22.fra24.01 {
+        array set save {-command 1 -orient 1}
+    }
+    namespace eval ::widgets::.top22.fra24.02 {
+        array set save {-command 1}
+    }
+    namespace eval ::widgets::.top22.fra24.03 {
+        array set save {-background 1 -closeenough 1 -height 1 -width 1 -xscrollcommand 1 -yscrollcommand 1}
     }
     namespace eval ::widgets_bindings {
         set tagslist {}
@@ -442,8 +472,22 @@ while {![eof $fi]} {
   set name [lindex $datos 0]
   set exp  [lindex $datos 1]
   set cnts [lindex $datos 2]
-  
-  set Tmp($name) [list $exp $cnts]
+
+  if {[catch "set gVar(Exp,$name)"] == 0} {
+   set found 0
+   foreach ec $gVar(Exp,$name) {
+    if {([lindex $ec 0] == $exp) && ([lindex $ec 1] == $cnts)} {
+     set found 1
+     break
+    }
+   }
+   
+   if {$found == 0} {
+    lappend gVar(Exp,$name) [list $exp $cnts]
+   }
+  } else {
+   lappend gVar(Exp,$name) [list $exp $cnts]
+  }
  }
 
 }
@@ -463,15 +507,15 @@ set i 0
 while {![eof $fi]} {
  set l [gets $fi]
  if {[string length $l] > 0} {
- 
+
   set datos [_fprsplit $l " \t"]
 
-  set namex [lindex $datos 1]
+  #set namex [lindex $datos 1]
   set name  [lindex $datos 2]
-  
+
   if {$name == "$gVar(search,0)-$gVar(search,1)-$gVar(search,2)"} {
-   lappend datos [lindex $Tmp($namex) 0]
-   lappend datos [lindex $Tmp($namex) 1]
+   #lappend datos [lindex $Tmp($namex) 0]
+   #lappend datos [lindex $Tmp($namex) 1]
 
    lappend gVar(lld) $datos
 
@@ -526,10 +570,10 @@ return 1
 
 proc {drawTable} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12 15 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 #seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
 #AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
-$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity experiment counts}
+$table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
 $table hline
 
 
@@ -706,6 +750,26 @@ if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
 }
 }
+###########################################################
+## Procedure:  drawTableExp
+
+proc {drawTableExp} {w h lld} {
+$w delete all
+set table [::DrawTable::drawntable $w -columnwidths {20 8} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+$table headers {experiment counts}
+$table hline
+
+
+foreach ld $lld {
+ $table addrow $ld
+ $table hline
+}
+
+
+$table frame all
+
+$w configure -scrollregion [$w bbox all]
+}
 
 proc init {argc argv} {
 global gVar
@@ -731,10 +795,11 @@ set gVar(filter,t5)   "*"
 set gVar(filter,t3)   "*"
 
 
+set gVar(Exp,NAME) "MR0000105964"
 
 
-
-set gVar(wgetCNV) .top23.cpd23.03
+set gVar(wgetCNV)  .top23.cpd23.03
+set gVar(wgetCNV2) .top22.fra24.03
 
 set gVar(msg) "Iniciando el programa..."
 
@@ -769,6 +834,86 @@ proc vTclWindow. {base {container 0}} {
     ###################
     # SETTING GEOMETRY
     ###################
+
+    vTcl:FireEvent $base <<Ready>>
+}
+
+proc vTclWindow.top22 {base {container 0}} {
+    if {$base == ""} {
+        set base .top22
+    }
+    if {[winfo exists $base] && (!$container)} {
+        wm deiconify $base; return
+    }
+
+    global widget
+    vTcl:DefineAlias "$base" "Toplevel2" vTcl:Toplevel:WidgetProc "" 1
+    vTcl:DefineAlias "$base.fra23" "Frame11" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra23.but27" "Button33" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra23.ent26" "Entry19" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra23.lab25" "Label27" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra24" "Frame6" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra24.01" "Scrollbar3" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra24.02" "Scrollbar4" vTcl:WidgetProc "Toplevel2" 1
+    vTcl:DefineAlias "$base.fra24.03" "Canvas1" vTcl:WidgetProc "Toplevel2" 1
+
+    ###################
+    # CREATING WIDGETS
+    ###################
+    if {!$container} {
+    vTcl:toplevel $base -class Toplevel
+    wm withdraw $base
+    wm focusmodel $base passive
+    wm geometry $base 382x405+525+260; update
+    wm maxsize $base 2945 1020
+    wm minsize $base 1 1
+    wm overrideredirect $base 0
+    wm resizable $base 1 1
+    wm title $base "vTcl-MIRNAadv Experiment Information"
+    vTcl:FireEvent $base <<Create>>
+    }
+    frame $base.fra23 \
+        -borderwidth 1 -height 75 -width 125 
+    label $base.fra23.lab25 \
+        -anchor w -text {MIRNA Name} -width 15 
+    entry $base.fra23.ent26 \
+        -background white -borderwidth 1 -textvariable gVar(Exp,NAME) 
+    button $base.fra23.but27 \
+        -borderwidth 1 \
+        -command {drawTableExp $gVar(wgetCNV2) {} $gVar(Exp,$gVar(Exp,NAME))} \
+        -pady 0 -text Show 
+    frame $base.fra24 \
+        -borderwidth 1 -height 30 -width 30 
+    scrollbar $base.fra24.01 \
+        -command "$base.fra24.03 xview" -orient horizontal 
+    scrollbar $base.fra24.02 \
+        -command "$base.fra24.03 yview" 
+    canvas $base.fra24.03 \
+        -background white -closeenough 1.0 -height 100 -width 100 \
+        -xscrollcommand "$base.fra24.01 set" \
+        -yscrollcommand "$base.fra24.02 set" 
+    ###################
+    # SETTING GEOMETRY
+    ###################
+    pack $base.fra23 \
+        -in $base -anchor center -expand 0 -fill x -side top 
+    pack $base.fra23.lab25 \
+        -in $base.fra23 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra23.ent26 \
+        -in $base.fra23 -anchor center -expand 0 -fill x -side left 
+    pack $base.fra23.but27 \
+        -in $base.fra23 -anchor center -expand 0 -fill y -side left 
+    pack $base.fra24 \
+        -in $base -anchor center -expand 1 -fill both -side top 
+    grid columnconf $base.fra24 0 -weight 1
+    grid rowconf $base.fra24 0 -weight 1
+    grid $base.fra24.01 \
+        -in $base.fra24 -column 0 -row 1 -columnspan 1 -rowspan 1 -sticky ew 
+    grid $base.fra24.02 \
+        -in $base.fra24 -column 1 -row 0 -columnspan 1 -rowspan 1 -sticky ns 
+    grid $base.fra24.03 \
+        -in $base.fra24 -column 0 -row 0 -columnspan 1 -rowspan 1 \
+        -sticky nesw 
 
     vTcl:FireEvent $base <<Ready>>
 }
@@ -827,6 +972,7 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra28.fra24.lab31" "Label25" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36" "Frame4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but22" "Button13" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra36.but25" "Button34" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but39" "Button6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.lab25" "Label7" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.lab24" "Label10" vTcl:WidgetProc "Toplevel1" 1
@@ -960,6 +1106,9 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
     button $base.fra36.but22 \
         -borderwidth 1 -command {plotData $gVar(wgetCNV) $gVar(lldf)} -pady 0 \
         -text PlotData 
+    button $base.fra36.but25 \
+        -borderwidth 1 -command {Window show .top22} -pady 0 \
+        -text ShowExperimentInfo 
     frame $base.cpd23 \
         -borderwidth 1 -height 30 -width 30 
     scrollbar $base.cpd23.01 \
@@ -1059,6 +1208,8 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
         -in $base.fra36 -anchor center -expand 0 -fill y -side right 
     pack $base.fra36.but22 \
         -in $base.fra36 -anchor center -expand 0 -fill y -side right 
+    pack $base.fra36.but25 \
+        -in $base.fra36 -anchor center -expand 0 -fill y -side right 
     pack $base.cpd23 \
         -in $base -anchor center -expand 1 -fill both -side top 
     grid columnconf $base.cpd23 0 -weight 1
@@ -1077,6 +1228,7 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
 }
 
 Window show .
+Window show .top22
 Window show .top23
 
 main $argc $argv
