@@ -277,7 +277,16 @@ if {$op == "open"} {
     {"FASTA DB ..."		{.fa} }
     {"Todos ..."		* }
   }
-  set tmp1 [tk_getSaveFile -filetypes $types -parent $w  -initialfile "[join [lreplace [split $GVar(FileName) "."] end end] "."].fa" -defaultextension .fa]
+  
+  if {[file isfile $GVar(FileName)]} {
+   set ifn [lindex [split $GVar(FileName) "/\\"] end]
+   set ifn "[join [lreplace [split $ifn "."] end end] "."].fa"
+  } else {
+   set ifn "noName.fa"
+  }
+
+  set tmp1 [tk_getSaveFile -filetypes $types -parent $w  -initialfile $ifn -defaultextension .fa]
+
 }
 
 if {$tmp1 != ""} {
@@ -328,7 +337,7 @@ return [lrange $lret 1 end]
 proc {_newLeeDatosIn} {ifname ofname mirnafn expfn} {
 global GVar
 
-set lfn [glob -directory [join [lreplace [split $ofname "/\\"] end end] "/"] *]
+set lfn [glob -nocomplain -directory [join [lreplace [split $ofname "/\\"] end end] "/"] *]
 foreach fn $lfn {
  file delete -force $fn
 }
@@ -530,6 +539,8 @@ set GVar(file1) "/file1"
 set GVar(file2) "/file2"
 set GVar(file4) "/file4"
 set GVar(file5) "/file5"
+
+set GVar(FileName) "noName"
 
 set GVar(Wget,StatBar) .top17.fra32.lab24
 
