@@ -608,6 +608,34 @@ $table frame all
 $w configure -scrollregion [$w bbox all]
 }
 ###########################################################
+## Procedure:  itemClick
+
+proc {itemClick} {w x y} {
+global gVar
+
+set ltags [$w gettags current]
+set cell  [lindex $ltags 0]
+set type  [$w type $cell]
+
+#puts "itemClick: $type -> $ltags"
+
+set lt [split $cell "_"]
+if {($type == "text") && ([lindex $lt 0] == "cell")} {
+ set row [lindex $lt 1]
+ 
+ set ct "cell_${row}_1"
+ 
+ set name [string trim [lindex [$w itemconfigure $ct -text] end]]
+ 
+ #puts "itemClick: $cell -> $ct -> $name"
+ 
+ Window show .top22
+ Window show .top22
+ set gVar(Exp,NAME) $name
+ drawTableExp $gVar(wgetCNV2) {} $gVar(Exp,$gVar(Exp,NAME))
+}
+}
+###########################################################
 ## Procedure:  itemEnter
 
 proc {itemEnter} {w} {
@@ -1112,8 +1140,9 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
         -borderwidth 1 -command {plotData $gVar(wgetCNV) $gVar(lldf)} -pady 0 \
         -text PlotData 
     button $base.fra36.but25 \
-        -borderwidth 1 -command {Window show .top22} -pady 0 \
-        -text ShowExperimentInfo 
+        -borderwidth 1 -command {Window show .top22
+Window show .top22} \
+        -pady 0 -text ShowExperimentInfo 
     frame $base.cpd23 \
         -borderwidth 1 -height 30 -width 30 
     scrollbar $base.cpd23.01 \
@@ -1124,6 +1153,9 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
         -background white -closeenough 1.0 -height 100 -width 100 \
         -xscrollcommand "$base.cpd23.01 set" \
         -yscrollcommand "$base.cpd23.02 set" 
+    bind $base.cpd23.03 <Button-1> {
+        itemClick %W %X %Y
+    }
     label $base.lab24 \
         -anchor w -text {Iniciando el programa...} -textvariable gVar(msg) 
     ###################
