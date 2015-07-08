@@ -198,7 +198,7 @@ proc vTcl:project:info {} {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
     namespace eval ::widgets::.top22.fra24 {
-        array set save {-borderwidth 1 -height 1 -width 1}
+        array set save {-borderwidth 1 -width 1}
     }
     namespace eval ::widgets::.top22.fra24.01 {
         array set save {-command 1 -orient 1}
@@ -338,7 +338,10 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra36.but22 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
-    namespace eval ::widgets::.top23.fra36.but25 {
+    namespace eval ::widgets::.top23.fra36.but23 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra36.but24 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
     namespace eval ::widgets::.top23.cpd23 {
@@ -577,7 +580,7 @@ return 1
 
 proc {drawTable} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {35 15 16 6 6 7 7 7 7 15 15 10 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+set table [::DrawTable::drawntable $w -columnwidths {30 15 16 6 6 7 7 7 7 10 10 7 12} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 #seq	                      name	   mir	          start	end mism add t5	 t3  s5       s3       DB    ambiguity
 #AAATGACACTGGTTATCTTTTCCATCGT MR0000105983 cel-miR-229-5p 7	34  1AC  0   u-C d-T CGGCAATG ATCGTGGA miRNA 1
 $table headers {seq name mir start end mism add t5 t3 s5 s3 DB ambiguity}
@@ -599,7 +602,7 @@ $w configure -scrollregion [$w bbox all]
 
 proc {drawTableExp} {w h lld} {
 $w delete all
-set table [::DrawTable::drawntable $w -columnwidths {20 8 7 15 30 15} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
+set table [::DrawTable::drawntable $w -columnwidths {15 8 7 15 30 15} -headerfont "Courier 12 bold" -textfont "Courier 10" -numberfont "Courier 10"]
 $table headers {experiment counts specie tissue technology link}
 $table hline
 
@@ -696,16 +699,33 @@ $w delete all
 
 
 set x0 20
-set y0 20
+set y0 40
 
 set sizeX 20
 set sizeY 20
+
+
+set yt [expr $y0 - $sizeY]
+
+set xt [expr 30 * $sizeX]
+$w create text $xt $yt -text "mism" -fill black
+set xt [expr 33 * $sizeX]
+$w create text $xt $yt -text "add"  -fill black
+set xt [expr 36 * $sizeX]
+$w create text $xt $yt -text "t5"   -fill black
+set xt [expr 39 * $sizeX]
+$w create text $xt $yt -text "t3"   -fill black
+
 
 set y [expr $y0]
 
 set i 0
 foreach ld $lld {
- set seq [lindex $ld 0]
+ set seq  [lindex $ld 0]
+ set mism [lindex $ld 5]
+ set add  [lindex $ld 6]
+ set t5   [lindex $ld 7]
+ set t3   [lindex $ld 8]
 
  set x [expr $x0 + $sizeX / 2.0]
 
@@ -732,6 +752,17 @@ foreach ld $lld {
   set x [expr $x + $sizeX]
  }
 
+ set yt $y
+
+ set xt [expr 30 * $sizeX]
+ $w create text $xt $yt -text $mism -fill black
+ set xt [expr 33 * $sizeX]
+ $w create text $xt $yt -text $add  -fill black
+ set xt [expr 36 * $sizeX]
+ $w create text $xt $yt -text $t5   -fill black
+ set xt [expr 39 * $sizeX]
+ $w create text $xt $yt -text $t3   -fill black
+ 
  set y [expr $y + $sizeY]
  incr i
 }
@@ -899,7 +930,7 @@ proc vTclWindow.top22 {base {container 0}} {
     vTcl:toplevel $base -class Toplevel
     wm withdraw $base
     wm focusmodel $base passive
-    wm geometry $base 678x439+525+260; update
+    wm geometry $base 799x289+563+509; update
     wm maxsize $base 2945 1020
     wm minsize $base 1 1
     wm overrideredirect $base 0
@@ -918,7 +949,7 @@ proc vTclWindow.top22 {base {container 0}} {
         -command {drawTableExp $gVar(wgetCNV2) {} $gVar(Exp,$gVar(Exp,NAME))} \
         -pady 0 -text Show 
     frame $base.fra24 \
-        -borderwidth 1 -height 30 -width 30 
+        -borderwidth 1 -width 129 
     scrollbar $base.fra24.01 \
         -command "$base.fra24.03 xview" -orient horizontal 
     scrollbar $base.fra24.02 \
@@ -1007,7 +1038,8 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra28.fra24.lab31" "Label25" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36" "Frame4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but22" "Button13" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.fra36.but25" "Button34" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra36.but23" "Button35" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra36.but24" "Button34" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but39" "Button6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.lab25" "Label7" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.lab24" "Label10" vTcl:WidgetProc "Toplevel1" 1
@@ -1018,7 +1050,7 @@ proc vTclWindow.top23 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 719x428+107+133; update
+    wm geometry $base 1225x484+57+133; update
     wm maxsize $base 2964 1035
     wm minsize $base 104 1
     wm overrideredirect $base 0
@@ -1146,7 +1178,11 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
     button $base.fra36.but22 \
         -borderwidth 1 -command {plotData $gVar(wgetCNV) $gVar(lldf)} -pady 0 \
         -text PlotData 
-    button $base.fra36.but25 \
+    button $base.fra36.but23 \
+        -borderwidth 1 \
+        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
+        -pady 0 -text Table 
+    button $base.fra36.but24 \
         -borderwidth 1 -command {Window show .top22
 Window show .top22} \
         -pady 0 -text ShowExperimentInfo 
@@ -1252,7 +1288,9 @@ Window show .top22} \
         -in $base.fra36 -anchor center -expand 0 -fill y -side right 
     pack $base.fra36.but22 \
         -in $base.fra36 -anchor center -expand 0 -fill y -side right 
-    pack $base.fra36.but25 \
+    pack $base.fra36.but23 \
+        -in $base.fra36 -anchor center -expand 0 -fill y -side right 
+    pack $base.fra36.but24 \
         -in $base.fra36 -anchor center -expand 0 -fill y -side right 
     pack $base.cpd23 \
         -in $base -anchor center -expand 1 -fill both -side top 
