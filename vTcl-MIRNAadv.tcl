@@ -707,6 +707,30 @@ set sizeY 20
 
 set yt [expr $y0 - $sizeY]
 
+
+set minStart 1e9
+foreach ld $lld {
+ set start [lindex $ld 3]
+ set end   [lindex $ld 4]
+ 
+ if {$start < $minStart} {set minStart $start}
+}
+set ld [lindex $lld 0]
+set start [lindex $ld 3]
+set end   [lindex $ld 4]
+
+set xts [expr $x0 + ($start - $minStart) * $sizeX]
+$w create text $xts $yt -text $start -fill black
+set xte [expr $x0 + ($end   - $minStart) * $sizeX]
+$w create text $xte $yt -text $end   -fill black
+
+set ytf [expr $y0 + [llength $lld] * $sizeY]
+$w create line $xts $yt $xts $ytf -fill black
+$w create line $xte $yt $xte $ytf -fill black
+
+
+
+
 set xt [expr 30 * $sizeX]
 $w create text $xt $yt -text "mism" -fill black
 set xt [expr 33 * $sizeX]
@@ -721,11 +745,11 @@ set y [expr $y0]
 
 set i 0
 foreach ld $lld {
- set seq  [lindex $ld 0]
- set mism [lindex $ld 5]
- set add  [lindex $ld 6]
- set t5   [lindex $ld 7]
- set t3   [lindex $ld 8]
+ set seq   [lindex $ld 0]
+ set mism  [lindex $ld 5]
+ set add   [lindex $ld 6]
+ set t5    [lindex $ld 7]
+ set t3    [lindex $ld 8]
 
  set x [expr $x0 + $sizeX / 2.0]
 
@@ -835,6 +859,90 @@ wm protocol .top23 WM_DELETE_WINDOW { exit }
 if {[catch "set vTcl(version)"] == 1} {
  source "$gVar(sysPath)/canvasTable.tcll"
 }
+}
+###########################################################
+## Procedure:  plotData_prv2
+
+proc {plotData_prv2} {w lld} {
+global gVar
+
+$w delete all
+
+
+set x0 20
+set y0 40
+
+set sizeX 20
+set sizeY 20
+
+
+set yt [expr $y0 - $sizeY]
+
+set xt [expr 30 * $sizeX]
+$w create text $xt $yt -text "mism" -fill black
+set xt [expr 33 * $sizeX]
+$w create text $xt $yt -text "add"  -fill black
+set xt [expr 36 * $sizeX]
+$w create text $xt $yt -text "t5"   -fill black
+set xt [expr 39 * $sizeX]
+$w create text $xt $yt -text "t3"   -fill black
+
+
+set y [expr $y0]
+
+set i 0
+foreach ld $lld {
+ set seq  [lindex $ld 0]
+ set mism [lindex $ld 5]
+ set add  [lindex $ld 6]
+ set t5   [lindex $ld 7]
+ set t3   [lindex $ld 8]
+
+ set x [expr $x0 + $sizeX / 2.0]
+
+ for {set k 0} {$k < [string length $seq]} {incr k} {
+  set c [string index $seq $k]
+ 
+  #A=rojo, T=azul, G=verde, C=amarillo
+  switch $c {
+   A {set cl red}
+   T {set cl blue}
+   G {set cl chartreuse}
+   C {set cl yellow}
+   default {set cl black}
+  }
+ 
+  if {$c != " "} {
+   set xi [expr $x - $sizeX/2.0]
+   set xf [expr $x + $sizeX/2.0]
+  
+   
+   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$i"]
+   #$w create line $x $y -text $c -fill $cl
+  }
+  set x [expr $x + $sizeX]
+ }
+
+ set yt $y
+
+ set xt [expr 30 * $sizeX]
+ $w create text $xt $yt -text $mism -fill black
+ set xt [expr 33 * $sizeX]
+ $w create text $xt $yt -text $add  -fill black
+ set xt [expr 36 * $sizeX]
+ $w create text $xt $yt -text $t5   -fill black
+ set xt [expr 39 * $sizeX]
+ $w create text $xt $yt -text $t3   -fill black
+ 
+ set y [expr $y + $sizeY]
+ incr i
+}
+
+$w configure -scrollregion [$w bbox all]
+
+
+$w bind item <Any-Enter> "itemEnter $w"
+$w bind item <Any-Leave> "itemLeave $w"
 }
 
 proc init {argc argv} {
