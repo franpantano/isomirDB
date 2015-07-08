@@ -1,7 +1,7 @@
 #!/bin/bash
-FILES=$1*
+FILES=./data/mirna_read_count_by_experiment/*
 
-rm -r $2*
+rm -r ./results/*
 
 for f in $FILES
 do
@@ -25,7 +25,7 @@ do
   
     echo "Processing $filename file with extension $extension..."
 
-    java -jar miraligner.jar -sub 1 -trim 3 -add 3 -s $ftype -i $f -db DB  -o $2$filename
+    java -jar miraligner.jar -sub 1 -trim 3 -add 3 -s $ftype -i $f -db DB  -o ./results/$filename
 
   fi
 done 
