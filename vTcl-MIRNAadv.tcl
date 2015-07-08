@@ -697,8 +697,22 @@ global gVar
 
 $w delete all
 
+######################################################
+foreach ld $lld {
+ set name [string trim [lindex $ld 1]]
+ set sum 0
+ foreach le $gVar(Exp,$name) {
+  set counts [lindex $le 1]
+  set sum [expr $sum + $counts]
+ }
 
-set x0 20
+ lappend lldm [concat [list $sum] $ld]
+}
+set lld [lsort -integer -index 0 -decreasing $lldm]
+unset lldm
+
+######################################################
+set x0 60
 set y0 40
 
 set sizeX 20
@@ -710,14 +724,14 @@ set yt [expr $y0 - $sizeY]
 
 set minStart 1e9
 foreach ld $lld {
- set start [lindex $ld 3]
- set end   [lindex $ld 4]
+ set start [lindex $ld 4]
+ set end   [lindex $ld 5]
  
  if {$start < $minStart} {set minStart $start}
 }
 set ld [lindex $lld 0]
-set start [lindex $ld 3]
-set end   [lindex $ld 4]
+set start [lindex $ld 4]
+set end   [lindex $ld 5]
 
 set xts [expr $x0 + ($start - $minStart) * $sizeX]
 $w create text $xts $yt -text $start -fill black
@@ -731,13 +745,16 @@ $w create line $xte $yt $xte $ytf -fill black
 
 
 
-set xt [expr 30 * $sizeX]
+set xt [expr $x0 - 2 * $sizeX]
+$w create text $xt $yt -text "counts" -fill black
+
+set xt [expr $x0 + 30 * $sizeX]
 $w create text $xt $yt -text "mism" -fill black
-set xt [expr 33 * $sizeX]
+set xt [expr $x0 + 33 * $sizeX]
 $w create text $xt $yt -text "add"  -fill black
-set xt [expr 36 * $sizeX]
+set xt [expr $x0 + 36 * $sizeX]
 $w create text $xt $yt -text "t5"   -fill black
-set xt [expr 39 * $sizeX]
+set xt [expr $x0 + 39 * $sizeX]
 $w create text $xt $yt -text "t3"   -fill black
 
 
@@ -745,11 +762,12 @@ set y [expr $y0]
 
 set i 0
 foreach ld $lld {
- set seq   [lindex $ld 0]
- set mism  [lindex $ld 5]
- set add   [lindex $ld 6]
- set t5    [lindex $ld 7]
- set t3    [lindex $ld 8]
+ set sum   [lindex $ld 0]
+ set seq   [lindex $ld 1]
+ set mism  [lindex $ld 6]
+ set add   [lindex $ld 7]
+ set t5    [lindex $ld 8]
+ set t3    [lindex $ld 9]
 
  set x [expr $x0 + $sizeX / 2.0]
 
@@ -778,13 +796,16 @@ foreach ld $lld {
 
  set yt $y
 
- set xt [expr 30 * $sizeX]
+ set xt [expr $x0 - 2 * $sizeX]
+ $w create text $xt $yt -text $sum -fill black
+
+ set xt [expr $x0 + 30 * $sizeX]
  $w create text $xt $yt -text $mism -fill black
- set xt [expr 33 * $sizeX]
+ set xt [expr $x0 + 33 * $sizeX]
  $w create text $xt $yt -text $add  -fill black
- set xt [expr 36 * $sizeX]
+ set xt [expr $x0 + 36 * $sizeX]
  $w create text $xt $yt -text $t5   -fill black
- set xt [expr 39 * $sizeX]
+ set xt [expr $x0 + 39 * $sizeX]
  $w create text $xt $yt -text $t3   -fill black
  
  set y [expr $y + $sizeY]
