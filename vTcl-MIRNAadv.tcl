@@ -746,8 +746,10 @@ set ytf [expr $y0 + [llength $lld] * $sizeY]
 $w create text $xts $yt -text $start -fill black
 $w create text $xte $yt -text $end   -fill black
 
-$w create line $xts $yt $xts $ytf -fill black
-$w create line $xte $yt $xte $ytf -fill black
+$w create line [expr $xts - $sizeX/2] $yt [expr $xts - $sizeX/2] $ytf -fill black
+$w create line [expr $xts + $sizeX/2] $yt [expr $xts + $sizeX/2] $ytf -fill black
+$w create line [expr $xte - $sizeX/2] $yt [expr $xte - $sizeX/2] $ytf -fill black
+$w create line [expr $xte + $sizeX/2] $yt [expr $xte + $sizeX/2] $ytf -fill black
 
 
 
