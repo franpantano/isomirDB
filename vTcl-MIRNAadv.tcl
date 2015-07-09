@@ -698,6 +698,7 @@ global gVar
 $w delete all
 
 ######################################################
+set i 0
 foreach ld $lld {
  set name [string trim [lindex $ld 1]]
  set sum 0
@@ -706,7 +707,10 @@ foreach ld $lld {
   set sum [expr $sum + $counts]
  }
 
+ lappend ld $i
  lappend lldm [concat [list $sum] $ld]
+
+ incr i
 }
 set lld [lsort -integer -index 0 -decreasing $lldm]
 unset lldm
@@ -721,11 +725,11 @@ set sizeY 20
 
 set yt [expr $y0 - $sizeY]
 
-
+#global minimum
 set minStart 1e9
-foreach ld $lld {
- set start [lindex $ld 4]
- set end   [lindex $ld 5]
+foreach ld $gVar(lld) {
+ set start [lindex $ld 3]
+ set end   [lindex $ld 4]
  
  if {$start < $minStart} {set minStart $start}
 }
@@ -733,12 +737,15 @@ set ld [lindex $lld 0]
 set start [lindex $ld 4]
 set end   [lindex $ld 5]
 
-set xts [expr $x0 + ($start - $minStart) * $sizeX]
+puts "plotData: $start -> $minStart"
+
+set xts [expr $x0 + ($start - $minStart) * $sizeX + $sizeX/2.0]
+set xte [expr $x0 + ($end   - $minStart) * $sizeX + $sizeX/2.0]
+set ytf [expr $y0 + [llength $lld] * $sizeY]
+
 $w create text $xts $yt -text $start -fill black
-set xte [expr $x0 + ($end   - $minStart) * $sizeX]
 $w create text $xte $yt -text $end   -fill black
 
-set ytf [expr $y0 + [llength $lld] * $sizeY]
 $w create line $xts $yt $xts $ytf -fill black
 $w create line $xte $yt $xte $ytf -fill black
 
@@ -760,7 +767,6 @@ $w create text $xt $yt -text "t3"   -fill black
 
 set y [expr $y0]
 
-set i 0
 foreach ld $lld {
  set sum   [lindex $ld 0]
  set seq   [lindex $ld 1]
@@ -768,6 +774,7 @@ foreach ld $lld {
  set add   [lindex $ld 7]
  set t5    [lindex $ld 8]
  set t3    [lindex $ld 9]
+ set row   [lindex $ld end]
 
  set x [expr $x0 + $sizeX / 2.0]
 
@@ -788,7 +795,7 @@ foreach ld $lld {
    set xf [expr $x + $sizeX/2.0]
   
    
-   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$i"]
+   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$row"]
    #$w create line $x $y -text $c -fill $cl
   }
   set x [expr $x + $sizeX]
@@ -809,7 +816,6 @@ foreach ld $lld {
  $w create text $xt $yt -text $t3   -fill black
  
  set y [expr $y + $sizeY]
- incr i
 }
 
 $w configure -scrollregion [$w bbox all]
@@ -863,23 +869,6 @@ foreach ld $lld {
 }
 
 $w configure -scrollregion [$w bbox all]
-}
-###########################################################
-## Procedure:  init
-###########################################################
-## Procedure:  main
-
-proc {main} {argc argv} {
-global gVar
-global vTcl
-
-## This will clean up and call exit properly on Windows.
-wm protocol .top23 WM_DELETE_WINDOW { exit }
-
-## This will execute only in RUN mode
-if {[catch "set vTcl(version)"] == 1} {
- source "$gVar(sysPath)/canvasTable.tcll"
-}
 }
 ###########################################################
 ## Procedure:  plotData_prv2
@@ -964,6 +953,23 @@ $w configure -scrollregion [$w bbox all]
 
 $w bind item <Any-Enter> "itemEnter $w"
 $w bind item <Any-Leave> "itemLeave $w"
+}
+###########################################################
+## Procedure:  init
+###########################################################
+## Procedure:  main
+
+proc {main} {argc argv} {
+global gVar
+global vTcl
+
+## This will clean up and call exit properly on Windows.
+wm protocol .top23 WM_DELETE_WINDOW { exit }
+
+## This will execute only in RUN mode
+if {[catch "set vTcl(version)"] == 1} {
+ source "$gVar(sysPath)/canvasTable.tcll"
+}
 }
 
 proc init {argc argv} {
