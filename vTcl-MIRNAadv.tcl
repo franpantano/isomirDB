@@ -644,6 +644,16 @@ if {($type == "text") && ([lindex $lt 0] == "cell")} {
  set gVar(Exp,NAME) $name
  drawTableExp $gVar(wgetCNV2) {} $gVar(Exp,$gVar(Exp,NAME))
 }
+
+if {($type == "line") && ($cell == "item")} {
+ set name [lindex $ltags 2]
+
+ 
+ Window show .top22
+ Window show .top22
+ set gVar(Exp,NAME) $name
+ drawTableExp $gVar(wgetCNV2) {} $gVar(Exp,$gVar(Exp,NAME))
+}
 }
 ###########################################################
 ## Procedure:  itemEnter
@@ -805,6 +815,7 @@ set y [expr $y0]
 foreach ld $lld {
  set sum   [lindex $ld 0]
  set seq   [lindex $ld 1]
+ set name  [lindex $ld 2]
  set mism  [lindex $ld 6]
  set add   [lindex $ld 7]
  set t5    [lindex $ld 8]
@@ -830,7 +841,7 @@ foreach ld $lld {
    set xf [expr $x + $sizeX/2.0]
   
    
-   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$row"]
+   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$row" $name]
    #$w create line $x $y -text $c -fill $cl
   }
   set x [expr $x + $sizeX]
@@ -990,23 +1001,6 @@ $w bind item <Any-Enter> "itemEnter $w"
 $w bind item <Any-Leave> "itemLeave $w"
 }
 ###########################################################
-## Procedure:  init
-###########################################################
-## Procedure:  main
-
-proc {main} {argc argv} {
-global gVar
-global vTcl
-
-## This will clean up and call exit properly on Windows.
-wm protocol .top23 WM_DELETE_WINDOW { exit }
-
-## This will execute only in RUN mode
-if {[catch "set vTcl(version)"] == 1} {
- source "$gVar(sysPath)/canvasTable.tcll"
-}
-}
-###########################################################
 ## Procedure:  plotData_prv3
 
 proc {plotData_prv3} {w lld} {
@@ -1142,6 +1136,23 @@ $w configure -scrollregion [$w bbox all]
 
 $w bind item <Any-Enter> "itemEnter $w"
 $w bind item <Any-Leave> "itemLeave $w"
+}
+###########################################################
+## Procedure:  init
+###########################################################
+## Procedure:  main
+
+proc {main} {argc argv} {
+global gVar
+global vTcl
+
+## This will clean up and call exit properly on Windows.
+wm protocol .top23 WM_DELETE_WINDOW { exit }
+
+## This will execute only in RUN mode
+if {[catch "set vTcl(version)"] == 1} {
+ source "$gVar(sysPath)/canvasTable.tcll"
+}
 }
 
 proc init {argc argv} {
