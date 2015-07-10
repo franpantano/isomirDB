@@ -1,1 +1,5 @@
-* need to add to the plot the reference sequence, for that we will need to add that someway in some file. need the sequence and the positions .... or can trace one of the sequence there to construct the refence
+* The plot can have a legend saying that NT is what color
+
+* it can be add to the experiment table the number of experiments, just next to where is counts now.
+
+* add filter in the plot area to show only sequences with counts > VALUE or/and number of experiments > VALUE
