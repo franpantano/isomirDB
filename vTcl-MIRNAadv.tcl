@@ -356,7 +356,28 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.cpd23.03 {
         array set save {-background 1 -closeenough 1 -height 1 -width 1 -xscrollcommand 1 -yscrollcommand 1}
     }
-    namespace eval ::widgets::.top23.lab24 {
+    namespace eval ::widgets::.top23.fra22 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra22.lab25 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra22.ent26 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1}
+    }
+    namespace eval ::widgets::.top23.fra22.but27 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra22.lab24 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra22.ent25 {
+        array set save {-background 1 -borderwidth 1 -textvariable 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra22.but26 {
+        array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.lab23 {
         array set save {-anchor 1 -text 1 -textvariable 1}
     }
     namespace eval ::widgets_bindings {
@@ -708,6 +729,34 @@ global gVar
 $w delete all
 
 ######################################################
+set x0 60
+set y0 40
+
+set sizeX 20
+set sizeY 20
+
+######################################################
+#   A {set cl red}
+#   T {set cl blue}
+#   G {set cl chartreuse}
+#   C {set cl yellow}
+set xts [expr $x0 + 50 * $sizeX]
+set xte [expr $x0 + 51 * $sizeX]
+set xtt [expr $x0 + 52 * $sizeX]
+set ytf [expr $y0 +  0 * $sizeY]
+$w create text $xtt $ytf -text "A" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill red
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "T" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill blue
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "G" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill chartreuse
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "C" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill yellow
+
+######################################################
 set i 0
 foreach ld $lld {
  set name [string trim [lindex $ld 1]]
@@ -726,13 +775,6 @@ set lld [lsort -integer -index 0 -decreasing $lldm]
 unset lldm
 
 ######################################################
-set x0 60
-set y0 40
-
-set sizeX 20
-set sizeY 20
-
-
 set yt [expr $y0 - $sizeY]
 
 #global minimum
@@ -1167,6 +1209,9 @@ if {[info script] == "vTcl-MIRNAadv.tcl"} {
 
 set gVar(fastaPATH)  "$gVar(sysPath)/data/mirna_read_count_by_experiment"
 set gVar(resultPATH) "$gVar(sysPath)/results"
+set gVar(postPATH)    $gVar(sysPath)
+
+set gVar(postNAME) noName.ps
 
 set gVar(search,0) cel
 set gVar(search,1) miR-66
@@ -1316,6 +1361,13 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.cpd23.01" "Scrollbar3" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.cpd23.02" "Scrollbar4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.cpd23.03" "Canvas1" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22" "Frame12" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.but26" "Button37" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.but27" "Button36" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.ent25" "Entry21" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.ent26" "Entry20" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.lab24" "Label29" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra22.lab25" "Label28" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24" "Frame1" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24.fra22" "Frame10" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra24.fra22.but27" "Button32" vTcl:WidgetProc "Toplevel1" 1
@@ -1360,7 +1412,7 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra36.but24" "Button34" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but39" "Button6" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.lab25" "Label7" vTcl:WidgetProc "Toplevel1" 1
-    vTcl:DefineAlias "$base.lab24" "Label10" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.lab23" "Label10" vTcl:WidgetProc "Toplevel1" 1
 
     ###################
     # CREATING WIDGETS
@@ -1517,7 +1569,28 @@ Window show .top22} \
     bind $base.cpd23.03 <Button-1> {
         itemClick %W %X %Y
     }
-    label $base.lab24 \
+    frame $base.fra22 \
+        -borderwidth 1 -height 75 -width 125 
+    label $base.fra22.lab25 \
+        -anchor w -text {Postcript Folder} -width 15 
+    entry $base.fra22.ent26 \
+        -background white -borderwidth 1 -textvariable gVar(postPATH) 
+    button $base.fra22.but27 \
+        -borderwidth 1 \
+        -command {set gVar(postPATH) [tk_chooseDirectory -parent .top23 -title "Select Postscript Folder" -mustexist 1 -initialdir $gVar(postPATH)]} \
+        -pady 0 -text Browse 
+    label $base.fra22.lab24 \
+        -anchor w -text {Postcript Name} -width 15 
+    entry $base.fra22.ent25 \
+        -background white -borderwidth 1 -textvariable gVar(postNAME) \
+        -width 30 
+    button $base.fra22.but26 \
+        -borderwidth 1 \
+        -command {$gVar(wgetCNV) postscript -file "$gVar(postPATH)/$gVar(postNAME)"
+
+set gVar(msg) "Postscript file $gVar(postNAME) saved..."} \
+        -pady 0 -text Save 
+    label $base.lab23 \
         -anchor w -text {Iniciando el programa...} -textvariable gVar(msg) 
     ###################
     # SETTING GEOMETRY
@@ -1531,7 +1604,7 @@ Window show .top22} \
     pack $base.fra24.fra22.ent26 \
         -in $base.fra24.fra22 -anchor center -expand 1 -fill x -side left 
     pack $base.fra24.fra22.but27 \
-        -in $base.fra24.fra22 -anchor center -expand 0 -fill y -side top 
+        -in $base.fra24.fra22 -anchor center -expand 0 -fill y -side left 
     pack $base.fra24.fra23 \
         -in $base.fra24 -anchor center -expand 0 -fill x -side top 
     pack $base.fra24.fra23.lab25 \
@@ -1539,7 +1612,7 @@ Window show .top22} \
     pack $base.fra24.fra23.ent26 \
         -in $base.fra24.fra23 -anchor center -expand 1 -fill x -side left 
     pack $base.fra24.fra23.but27 \
-        -in $base.fra24.fra23 -anchor center -expand 0 -fill y -side top 
+        -in $base.fra24.fra23 -anchor center -expand 0 -fill y -side left 
     pack $base.fra28 \
         -in $base -anchor center -expand 0 -fill x -side top 
     pack $base.fra28.fra22 \
@@ -1621,7 +1694,21 @@ Window show .top22} \
     grid $base.cpd23.03 \
         -in $base.cpd23 -column 0 -row 0 -columnspan 1 -rowspan 1 \
         -sticky nesw 
-    pack $base.lab24 \
+    pack $base.fra22 \
+        -in $base -anchor center -expand 0 -fill x -side top 
+    pack $base.fra22.lab25 \
+        -in $base.fra22 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra22.ent26 \
+        -in $base.fra22 -anchor center -expand 1 -fill x -side left 
+    pack $base.fra22.but27 \
+        -in $base.fra22 -anchor center -expand 0 -fill y -side left 
+    pack $base.fra22.lab24 \
+        -in $base.fra22 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra22.ent25 \
+        -in $base.fra22 -anchor center -expand 0 -fill x -side left 
+    pack $base.fra22.but26 \
+        -in $base.fra22 -anchor center -expand 0 -fill y -side left 
+    pack $base.lab23 \
         -in $base -anchor center -expand 0 -fill x -side top 
 
     vTcl:FireEvent $base <<Ready>>
