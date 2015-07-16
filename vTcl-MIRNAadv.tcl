@@ -326,6 +326,18 @@ proc vTcl:project:info {} {
     namespace eval ::widgets::.top23.fra28.fra24.but34 {
         array set save {-borderwidth 1 -command 1 -pady 1 -text 1}
     }
+    namespace eval ::widgets::.top23.fra28.fra25 {
+        array set save {-borderwidth 1 -height 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra28.fra25.lab25 {
+        array set save {-anchor 1 -text 1 -width 1}
+    }
+    namespace eval ::widgets::.top23.fra28.fra25.lab30 {
+        array set save {-anchor 1 -text 1}
+    }
+    namespace eval ::widgets::.top23.fra28.fra25.ent32 {
+        array set save {-background 1 -borderwidth 1 -justify 1 -textvariable 1 -width 1}
+    }
     namespace eval ::widgets::.top23.fra36 {
         array set save {-borderwidth 1 -height 1 -width 1}
     }
@@ -774,6 +786,209 @@ foreach ld $lld {
 set lld [lsort -integer -index 0 -decreasing $lldm]
 unset lldm
 
+
+######################################################################
+set yt [expr $y0 - $sizeY]
+
+set xt [expr $x0 - 2 * $sizeX]
+$w create text $xt $yt -text "counts" -fill black
+
+set xt [expr $x0 + 30 * $sizeX]
+$w create text $xt $yt -text "mism" -fill black
+set xt [expr $x0 + 33 * $sizeX]
+$w create text $xt $yt -text "add"  -fill black
+set xt [expr $x0 + 36 * $sizeX]
+$w create text $xt $yt -text "t5"   -fill black
+set xt [expr $x0 + 39 * $sizeX]
+$w create text $xt $yt -text "t3"   -fill black
+
+
+######################################################################
+
+set y [expr $y0]
+
+set nb 0
+foreach ld $lld {
+ set sum   [lindex $ld 0]
+ 
+ if {$sum > $gVar(plot,minCnts)} {
+  incr nb
+  
+  set seq   [lindex $ld 1]
+  set name  [lindex $ld 2]
+  set mism  [lindex $ld 6]
+  set add   [lindex $ld 7]
+  set t5    [lindex $ld 8]
+  set t3    [lindex $ld 9]
+  set row   [lindex $ld end]
+
+  set x [expr $x0 + $sizeX / 2.0]
+
+  for {set k 0} {$k < [string length $seq]} {incr k} {
+   set c [string index $seq $k]
+ 
+   #A=rojo, T=azul, G=verde, C=amarillo
+   switch $c {
+    A {set cl red}
+    T {set cl blue}
+    G {set cl chartreuse}
+    C {set cl yellow}
+    default {set cl black}
+   }
+ 
+   if {$c != " "} {
+    set xi [expr $x - $sizeX/2.0]
+    set xf [expr $x + $sizeX/2.0]
+  
+   
+    $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$row" $name]
+    #$w create line $x $y -text $c -fill $cl
+   }
+   set x [expr $x + $sizeX]
+  }
+
+  set yt $y
+
+  set xt [expr $x0 - 2 * $sizeX]
+  $w create text $xt $yt -text $sum -fill black
+
+  set xt [expr $x0 + 30 * $sizeX]
+  $w create text $xt $yt -text $mism -fill black
+  set xt [expr $x0 + 33 * $sizeX]
+  $w create text $xt $yt -text $add  -fill black
+  set xt [expr $x0 + 36 * $sizeX]
+  $w create text $xt $yt -text $t5   -fill black
+  set xt [expr $x0 + 39 * $sizeX]
+  $w create text $xt $yt -text $t3   -fill black
+ 
+  set y [expr $y + $sizeY]
+ }
+}
+
+#####################################################################
+set yt [expr $y0 - $sizeY]
+
+#global minimum
+set minStart 1e9
+foreach ld $gVar(lld) {
+ set start [lindex $ld 3]
+ set end   [lindex $ld 4]
+ 
+ if {$start < $minStart} {set minStart $start}
+}
+#sum    seq	name	mir	start	end	mism	add	t5	t3	s5	s3	DB	ambiguity
+set ld [lindex $lld 0]
+set start [lindex $ld 4]
+set end   [lindex $ld 5]
+set t5    [lindex $ld 8]
+set t3    [lindex $ld 9]
+
+#puts "plotData: $start -> $minStart"
+
+if {$t5 != 0} {
+ set sp [split $t5 "-"]
+
+ if {[lindex $sp 0] == "d"} {
+  set op -1
+ } else {
+  #then is "u"
+  set op +1
+ } 
+
+ set cnt [string length [lindex $sp 1]]
+
+ set start [expr $start + $op * $cnt]
+}
+
+if {$t3 != 0} {
+ set sp [split $t3 "-"]
+
+ if {[lindex $sp 0] == "d"} {
+  set op -1
+ } else {
+  #then is "u"
+  set op +1
+ } 
+
+ set cnt [string length [lindex $sp 1]]
+
+ set end [expr $end + $op * $cnt]
+}
+
+set xts [expr $x0 + ($start - $minStart) * $sizeX + $sizeX/2.0]
+set xte [expr $x0 + ($end   - $minStart) * $sizeX + $sizeX/2.0]
+set ytf [expr $y0 + $nb * $sizeY]
+
+$w create text $xts $yt -text $start -fill black
+$w create text $xte $yt -text $end   -fill black
+
+$w create line [expr $xts - $sizeX/2] $yt [expr $xts - $sizeX/2] $ytf -fill black
+$w create line [expr $xts + $sizeX/2] $yt [expr $xts + $sizeX/2] $ytf -fill black
+$w create line [expr $xte - $sizeX/2] $yt [expr $xte - $sizeX/2] $ytf -fill black
+$w create line [expr $xte + $sizeX/2] $yt [expr $xte + $sizeX/2] $ytf -fill black
+
+
+######################################################
+$w configure -scrollregion [$w bbox all]
+
+
+$w bind item <Any-Enter> "itemEnter $w"
+$w bind item <Any-Leave> "itemLeave $w"
+}
+###########################################################
+## Procedure:  plotData_prv
+
+proc {plotData_prv} {w lld} {
+global gVar
+
+$w delete all
+
+######################################################
+set x0 60
+set y0 40
+
+set sizeX 20
+set sizeY 20
+
+######################################################
+#   A {set cl red}
+#   T {set cl blue}
+#   G {set cl chartreuse}
+#   C {set cl yellow}
+set xts [expr $x0 + 50 * $sizeX]
+set xte [expr $x0 + 51 * $sizeX]
+set xtt [expr $x0 + 52 * $sizeX]
+set ytf [expr $y0 +  0 * $sizeY]
+$w create text $xtt $ytf -text "A" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill red
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "T" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill blue
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "G" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill chartreuse
+set ytf [expr $ytf + $sizeY]
+$w create text $xtt $ytf -text "C" -fill black
+$w create line $xts $ytf $xte $ytf -width [expr $sizeY/3.0*2.0] -fill yellow
+
+######################################################
+set i 0
+foreach ld $lld {
+ set name [string trim [lindex $ld 1]]
+ set sum 0
+ foreach le $gVar(Exp,$name) {
+  set counts [lindex $le 1]
+  set sum [expr $sum + $counts]
+ }
+
+ lappend ld $i
+ lappend lldm [concat [list $sum] $ld]
+
+ incr i
+}
+set lld [lsort -integer -index 0 -decreasing $lldm]
+unset lldm
+
 ######################################################
 set yt [expr $y0 - $sizeY]
 
@@ -913,273 +1128,6 @@ $w bind item <Any-Enter> "itemEnter $w"
 $w bind item <Any-Leave> "itemLeave $w"
 }
 ###########################################################
-## Procedure:  plotData_prv
-
-proc {plotData_prv} {w lld} {
-global gVar
-
-$w delete all
-
-
-set x0 20
-set y0 20
-
-set sizeX 10
-set sizeY 15
-
-set y [expr $y0]
-
-
-foreach ld $lld {
- set seq [lindex $ld 0]
-
- set x [expr $x0 + $sizeX / 2.0]
-
- for {set k 0} {$k < [string length $seq]} {incr k} {
-  set c [string index $seq $k]
- 
-  #A=rojo, T=azul, G=verde, C=amarillo
-  switch $c {
-   A {set cl red}
-   T {set cl blue}
-   G {set cl green}
-   C {set cl yellow}
-   default {set cl black}
-  }
- 
-  if {$c != " "} { 
-   $w create text $x $y -text $c -fill $cl
-  }
-  set x [expr $x + $sizeX]
- }
-
- set y [expr $y + $sizeY]
-}
-
-$w configure -scrollregion [$w bbox all]
-}
-###########################################################
-## Procedure:  plotData_prv2
-
-proc {plotData_prv2} {w lld} {
-global gVar
-
-$w delete all
-
-
-set x0 20
-set y0 40
-
-set sizeX 20
-set sizeY 20
-
-
-set yt [expr $y0 - $sizeY]
-
-set xt [expr 30 * $sizeX]
-$w create text $xt $yt -text "mism" -fill black
-set xt [expr 33 * $sizeX]
-$w create text $xt $yt -text "add"  -fill black
-set xt [expr 36 * $sizeX]
-$w create text $xt $yt -text "t5"   -fill black
-set xt [expr 39 * $sizeX]
-$w create text $xt $yt -text "t3"   -fill black
-
-
-set y [expr $y0]
-
-set i 0
-foreach ld $lld {
- set seq  [lindex $ld 0]
- set mism [lindex $ld 5]
- set add  [lindex $ld 6]
- set t5   [lindex $ld 7]
- set t3   [lindex $ld 8]
-
- set x [expr $x0 + $sizeX / 2.0]
-
- for {set k 0} {$k < [string length $seq]} {incr k} {
-  set c [string index $seq $k]
- 
-  #A=rojo, T=azul, G=verde, C=amarillo
-  switch $c {
-   A {set cl red}
-   T {set cl blue}
-   G {set cl chartreuse}
-   C {set cl yellow}
-   default {set cl black}
-  }
- 
-  if {$c != " "} {
-   set xi [expr $x - $sizeX/2.0]
-   set xf [expr $x + $sizeX/2.0]
-  
-   
-   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$i"]
-   #$w create line $x $y -text $c -fill $cl
-  }
-  set x [expr $x + $sizeX]
- }
-
- set yt $y
-
- set xt [expr 30 * $sizeX]
- $w create text $xt $yt -text $mism -fill black
- set xt [expr 33 * $sizeX]
- $w create text $xt $yt -text $add  -fill black
- set xt [expr 36 * $sizeX]
- $w create text $xt $yt -text $t5   -fill black
- set xt [expr 39 * $sizeX]
- $w create text $xt $yt -text $t3   -fill black
- 
- set y [expr $y + $sizeY]
- incr i
-}
-
-$w configure -scrollregion [$w bbox all]
-
-
-$w bind item <Any-Enter> "itemEnter $w"
-$w bind item <Any-Leave> "itemLeave $w"
-}
-###########################################################
-## Procedure:  plotData_prv3
-
-proc {plotData_prv3} {w lld} {
-global gVar
-
-$w delete all
-
-######################################################
-set i 0
-foreach ld $lld {
- set name [string trim [lindex $ld 1]]
- set sum 0
- foreach le $gVar(Exp,$name) {
-  set counts [lindex $le 1]
-  set sum [expr $sum + $counts]
- }
-
- lappend ld $i
- lappend lldm [concat [list $sum] $ld]
-
- incr i
-}
-set lld [lsort -integer -index 0 -decreasing $lldm]
-unset lldm
-
-######################################################
-set x0 60
-set y0 40
-
-set sizeX 20
-set sizeY 20
-
-
-set yt [expr $y0 - $sizeY]
-
-#global minimum
-set minStart 1e9
-foreach ld $gVar(lld) {
- set start [lindex $ld 3]
- set end   [lindex $ld 4]
- 
- if {$start < $minStart} {set minStart $start}
-}
-set ld [lindex $lld 0]
-set start [lindex $ld 4]
-set end   [lindex $ld 5]
-
-puts "plotData: $start -> $minStart"
-
-set xts [expr $x0 + ($start - $minStart) * $sizeX + $sizeX/2.0]
-set xte [expr $x0 + ($end   - $minStart) * $sizeX + $sizeX/2.0]
-set ytf [expr $y0 + [llength $lld] * $sizeY]
-
-$w create text $xts $yt -text $start -fill black
-$w create text $xte $yt -text $end   -fill black
-
-$w create line [expr $xts - $sizeX/2] $yt [expr $xts - $sizeX/2] $ytf -fill black
-$w create line [expr $xts + $sizeX/2] $yt [expr $xts + $sizeX/2] $ytf -fill black
-$w create line [expr $xte - $sizeX/2] $yt [expr $xte - $sizeX/2] $ytf -fill black
-$w create line [expr $xte + $sizeX/2] $yt [expr $xte + $sizeX/2] $ytf -fill black
-
-
-
-
-set xt [expr $x0 - 2 * $sizeX]
-$w create text $xt $yt -text "counts" -fill black
-
-set xt [expr $x0 + 30 * $sizeX]
-$w create text $xt $yt -text "mism" -fill black
-set xt [expr $x0 + 33 * $sizeX]
-$w create text $xt $yt -text "add"  -fill black
-set xt [expr $x0 + 36 * $sizeX]
-$w create text $xt $yt -text "t5"   -fill black
-set xt [expr $x0 + 39 * $sizeX]
-$w create text $xt $yt -text "t3"   -fill black
-
-
-set y [expr $y0]
-
-foreach ld $lld {
- set sum   [lindex $ld 0]
- set seq   [lindex $ld 1]
- set mism  [lindex $ld 6]
- set add   [lindex $ld 7]
- set t5    [lindex $ld 8]
- set t3    [lindex $ld 9]
- set row   [lindex $ld end]
-
- set x [expr $x0 + $sizeX / 2.0]
-
- for {set k 0} {$k < [string length $seq]} {incr k} {
-  set c [string index $seq $k]
- 
-  #A=rojo, T=azul, G=verde, C=amarillo
-  switch $c {
-   A {set cl red}
-   T {set cl blue}
-   G {set cl chartreuse}
-   C {set cl yellow}
-   default {set cl black}
-  }
- 
-  if {$c != " "} {
-   set xi [expr $x - $sizeX/2.0]
-   set xf [expr $x + $sizeX/2.0]
-  
-   
-   $w create line $xi $y $xf $y -fill $cl -width [expr $sizeY/3.0*2.0] -tags [list item "row-$row"]
-   #$w create line $x $y -text $c -fill $cl
-  }
-  set x [expr $x + $sizeX]
- }
-
- set yt $y
-
- set xt [expr $x0 - 2 * $sizeX]
- $w create text $xt $yt -text $sum -fill black
-
- set xt [expr $x0 + 30 * $sizeX]
- $w create text $xt $yt -text $mism -fill black
- set xt [expr $x0 + 33 * $sizeX]
- $w create text $xt $yt -text $add  -fill black
- set xt [expr $x0 + 36 * $sizeX]
- $w create text $xt $yt -text $t5   -fill black
- set xt [expr $x0 + 39 * $sizeX]
- $w create text $xt $yt -text $t3   -fill black
- 
- set y [expr $y + $sizeY]
-}
-
-$w configure -scrollregion [$w bbox all]
-
-
-$w bind item <Any-Enter> "itemEnter $w"
-$w bind item <Any-Leave> "itemLeave $w"
-}
-###########################################################
 ## Procedure:  init
 ###########################################################
 ## Procedure:  main
@@ -1223,6 +1171,9 @@ set gVar(filter,add)  "*"
 set gVar(filter,t5)   "*"
 set gVar(filter,t3)   "*"
 
+set gVar(plot) table
+
+set gVar(plot,minCnts) 0
 
 set gVar(Exp,NAME) "MR0000105964"
 
@@ -1406,6 +1357,10 @@ proc vTclWindow.top23 {base {container 0}} {
     vTcl:DefineAlias "$base.fra28.fra24.lab28" "Label24" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.fra24.lab30" "Label21" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra28.fra24.lab31" "Label25" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.fra25" "Frame13" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.fra25.ent32" "Entry22" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.fra25.lab25" "Label30" vTcl:WidgetProc "Toplevel1" 1
+    vTcl:DefineAlias "$base.fra28.fra25.lab30" "Label31" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36" "Frame4" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but22" "Button13" vTcl:WidgetProc "Toplevel1" 1
     vTcl:DefineAlias "$base.fra36.but23" "Button35" vTcl:WidgetProc "Toplevel1" 1
@@ -1426,7 +1381,7 @@ proc vTclWindow.top23 {base {container 0}} {
     wm overrideredirect $base 0
     wm resizable $base 1 1
     wm deiconify $base
-    wm title $base "vTclMIRNAadv (FPR2015)"
+    wm title $base "vTclMIRNAadv (FPR 2015)"
     vTcl:FireEvent $base <<Create>>
     }
     frame $base.fra24 \
@@ -1475,39 +1430,55 @@ proc vTclWindow.top23 {base {container 0}} {
         -command {set gVar(lld)  {}
 set gVar(lldf) {}
 
-doSearch} -pady 0 \
-        -text Search 
+set gVar(plot) table
+
+doSearch} \
+        -pady 0 -text Search 
     frame $base.fra28.fra23 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra28.fra23.lab28 \
         -anchor w -text {Sort Option:} -width 15 
     button $base.fra28.fra23.but29 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 0 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 0 -increasing $gVar(lldf)]} \
         -pady 0 -text Seq. 
     button $base.fra28.fra23.but30 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 1 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 1 -increasing $gVar(lldf)]} \
         -pady 0 -text name 
     button $base.fra28.fra23.but31 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 5 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 5 -increasing $gVar(lldf)]} \
         -pady 0 -text mism 
     button $base.fra28.fra23.but32 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 6 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 6 -increasing $gVar(lldf)]} \
         -pady 0 -text add 
     button $base.fra28.fra23.but36 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 7 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 7 -increasing $gVar(lldf)]} \
         -pady 0 -text t5 
     button $base.fra28.fra23.but37 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 8 -increasing $gVar(lldf)]} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) [lsort -index 8 -increasing $gVar(lldf)]} \
         -pady 0 -text t3 
     button $base.fra28.fra23.but22 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
         -pady 0 -text Original 
     frame $base.fra28.fra24 \
         -borderwidth 1 -height 75 -width 125 
@@ -1537,8 +1508,22 @@ doSearch} -pady 0 \
         -borderwidth 1 \
         -command {doFilter
 
-drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
+
+if {$gVar(plot) == "table"} {
+ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)
+} else {
+ plotData $gVar(wgetCNV) $gVar(lldf)
+}} \
         -pady 0 -text Filter 
+    frame $base.fra28.fra25 \
+        -borderwidth 1 -height 75 -width 125 
+    label $base.fra28.fra25.lab25 \
+        -anchor w -text {Plot Option:} -width 15 
+    label $base.fra28.fra25.lab30 \
+        -anchor w -text minCount 
+    entry $base.fra28.fra25.ent32 \
+        -background white -borderwidth 1 -justify center \
+        -textvariable gVar(plot,minCnts) -width 10 
     frame $base.fra36 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra36.lab25 \
@@ -1546,11 +1531,16 @@ drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
     button $base.fra36.but39 \
         -borderwidth 1 -command {console show} -pady 0 -text Console 
     button $base.fra36.but22 \
-        -borderwidth 1 -command {plotData $gVar(wgetCNV) $gVar(lldf)} -pady 0 \
-        -text PlotData 
+        -borderwidth 1 \
+        -command {set gVar(plot) data
+
+plotData $gVar(wgetCNV) $gVar(lldf)} \
+        -pady 0 -text PlotData 
     button $base.fra36.but23 \
         -borderwidth 1 \
-        -command {drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
+        -command {set gVar(plot) table
+
+drawTable $gVar(wgetCNV) $gVar(tTitles) $gVar(lldf)} \
         -pady 0 -text Table 
     button $base.fra36.but24 \
         -borderwidth 1 -command {Window show .top22
@@ -1671,6 +1661,14 @@ set gVar(msg) "Postscript file $gVar(postNAME) saved..."} \
         -in $base.fra28.fra24 -anchor center -expand 0 -fill none -side left 
     pack $base.fra28.fra24.but34 \
         -in $base.fra28.fra24 -anchor center -expand 0 -fill y -side left 
+    pack $base.fra28.fra25 \
+        -in $base.fra28 -anchor center -expand 0 -fill x -side top 
+    pack $base.fra28.fra25.lab25 \
+        -in $base.fra28.fra25 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.fra25.lab30 \
+        -in $base.fra28.fra25 -anchor center -expand 0 -fill none -side left 
+    pack $base.fra28.fra25.ent32 \
+        -in $base.fra28.fra25 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36 \
         -in $base -anchor center -expand 0 -fill x -side top 
     pack $base.fra36.lab25 \
