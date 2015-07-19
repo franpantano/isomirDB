@@ -741,7 +741,7 @@ global gVar
 $w delete all
 
 ######################################################
-set x0 60
+set x0 100
 set y0 40
 
 set sizeX 20
@@ -773,13 +773,15 @@ set i 0
 foreach ld $lld {
  set name [string trim [lindex $ld 1]]
  set sum 0
+ set nexp 0
  foreach le $gVar(Exp,$name) {
+  incr nexp
   set counts [lindex $le 1]
   set sum [expr $sum + $counts]
  }
 
  lappend ld $i
- lappend lldm [concat [list $sum] $ld]
+ lappend lldm [concat [list $sum $nexp] $ld]
 
  incr i
 }
@@ -790,8 +792,11 @@ unset lldm
 ######################################################################
 set yt [expr $y0 - $sizeY]
 
-set xt [expr $x0 - 2 * $sizeX]
+set xt [expr $x0 - 6 * $sizeX]
 $w create text $xt $yt -text "counts" -fill black
+
+set xt [expr $x0 - 2 * $sizeX]
+$w create text $xt $yt -text "experim" -fill black
 
 set xt [expr $x0 + 30 * $sizeX]
 $w create text $xt $yt -text "mism" -fill black
@@ -811,15 +816,16 @@ set nb 0
 foreach ld $lld {
  set sum   [lindex $ld 0]
  
- if {$sum > $gVar(plot,minCnts)} {
+ if {$sum >= $gVar(plot,minCnts)} {
   incr nb
   
-  set seq   [lindex $ld 1]
-  set name  [lindex $ld 2]
-  set mism  [lindex $ld 6]
-  set add   [lindex $ld 7]
-  set t5    [lindex $ld 8]
-  set t3    [lindex $ld 9]
+  set nexp  [lindex $ld 1]
+  set seq   [lindex $ld 2]
+  set name  [lindex $ld 3]
+  set mism  [lindex $ld 7]
+  set add   [lindex $ld 8]
+  set t5    [lindex $ld 9]
+  set t3    [lindex $ld 10]
   set row   [lindex $ld end]
 
   set x [expr $x0 + $sizeX / 2.0]
@@ -849,8 +855,11 @@ foreach ld $lld {
 
   set yt $y
 
-  set xt [expr $x0 - 2 * $sizeX]
+  set xt [expr $x0 - 6 * $sizeX]
   $w create text $xt $yt -text $sum -fill black
+
+  set xt [expr $x0 - 2 * $sizeX]
+  $w create text $xt $yt -text $nexp -fill black
 
   set xt [expr $x0 + 30 * $sizeX]
   $w create text $xt $yt -text $mism -fill black
@@ -876,12 +885,12 @@ foreach ld $gVar(lld) {
  
  if {$start < $minStart} {set minStart $start}
 }
-#sum    seq	name	mir	start	end	mism	add	t5	t3	s5	s3	DB	ambiguity
+#sum  experim  seq	name	mir	start	end	mism	add	t5	t3	s5	s3	DB	ambiguity
 set ld [lindex $lld 0]
-set start [lindex $ld 4]
-set end   [lindex $ld 5]
-set t5    [lindex $ld 8]
-set t3    [lindex $ld 9]
+set start [lindex $ld 5]
+set end   [lindex $ld 6]
+set t5    [lindex $ld 9]
+set t3    [lindex $ld 10]
 
 #puts "plotData: $start -> $minStart"
 
