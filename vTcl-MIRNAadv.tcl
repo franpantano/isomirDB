@@ -1568,6 +1568,9 @@ Window show .top22} \
     bind $base.cpd23.03 <Button-1> {
         itemClick %W %X %Y
     }
+    bind $base.cpd23.03 <MouseWheel> {
+        %W yview scroll [expr {-%D/120}] units
+    }
     frame $base.fra22 \
         -borderwidth 1 -height 75 -width 125 
     label $base.fra22.lab25 \
