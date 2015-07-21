@@ -307,7 +307,8 @@
 502	ER0000000388	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: One cell embryo; Strain: TX189	0	GEO:GSM427301	343964	3526302
 503	ER0000000389	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: Post-gastrulation embryo; Strain: TX189	0	GEO:GSM427332	3163298	11846908
 504	ER0000000390	cel	Embryo	Illumina Genome Analyzer II	Strain: TX189	0	GEO:GSM427344	3739553	5881461
-505	ER0000000391	cel	Embryo	Illumina Genome Analyzer II	Developmental stage: One-cell embryo; Strain: TX189	0	GEO:GSM427345	368512	3010279
+505	ER0000000391	cel	Embryo\
+	Illumina Genome Analyzer II	Developmental stage: One-cell embryo; Strain: TX189	0	GEO:GSM427345	368512	3010279
 506	ER0000000392	cel	Embryo	Illumina Genome Analyzer II	Mixed embryos; Strain: TX189	0	GEO:GSM427346	1334524	2208127
 507	ER0000000393	cel	Whole body	Illumina Genome Analyzer	Strain: N2; Developmental stage: L4	0	GEO:GSM916519	207909	1083715
 516	ER0000000402	cel	Whole body	Illumina Genome Analyzer II	Strain: spe-9(hc88); Gender: Hermaphrodites; Developmental stage: Day 0-1 post-L4 molt (young adult stage. Specifically, 66 hrs after synchronized L1 stage animals were placed bacterial plates); Growth condition: 23°C; Stress conditions: Untreated for 0 hrs	0	GEO:GSM870220	18835135	32670135
@@ -418,7 +419,8 @@
 621	ER0000000507	gga	Heart	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995327	11372349	21111697
 622	ER0000000508	gga	Kidney	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995328	6510195	17133993
 623	ER0000000509	gga	Testis	Illumina Genome Analyzer IIx	Age: ~1 year, adult; Gender: Male	2313	GEO:GSM995329	284485	15697230
-624	ER0000000510	mmu	Sertoli cells	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995330	6522049	20677390
+624	ER0000000510	mmu	Sertoli cells\
+	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995330	6522049	20677390
 625	ER0000000511	mmu	Spermatids	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995331	250901	4261846
 626	ER0000000512	mmu	Spermatocytes	Illumina Genome Analyzer IIx	Age: Pool of individuals; Gender: Male	2313	GEO:GSM995332	219558	4711112
 627	ER0000000513	mml	Frontal Cortex	Illumina Genome Analyzer IIx	Age: 8 years; Gender: Female	2313	GEO:GSM995333	8175430	20151152

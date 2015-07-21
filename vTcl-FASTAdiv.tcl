@@ -370,6 +370,13 @@ while {![eof $fi]} {
  if {[string length $l] > 0} {
  
   set datos [split $l "\t"]
+  
+  if {[llength $datos] < 8} {
+   set l [gets $fi]
+   set l [gets $fi]
+   set dat2 [split $l "\t"]
+   set datos [concat $datos [lrange $dat2 1 end]]
+  }
 
   set ne [lindex $datos 1]
   set c3 [lindex $datos 2]
